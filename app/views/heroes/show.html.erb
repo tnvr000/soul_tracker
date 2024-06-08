@@ -1,0 +1,34 @@
+<h1><%= @hero.name %></h1>
+
+<div>
+  <span class="btn btn-primary"><%= @hero.hero_role %></span>
+  <span class="btn btn-primary"><%= @hero.hero_style %></span>
+</div>
+<div>
+  <b>Combat Power : </b>
+  <%= @hero.combat_power %>
+</div>
+
+<div>
+  <b>Attack : </b>
+  <%= @hero.attack %>
+</div>
+
+<div>
+  <b>Defence : </b>
+  <%= @hero.defence %>
+</div>
+
+<div>
+  <b>Hit Point : </b>
+  <%= @hero.hit_point %>
+</div>
+
+<div>
+  <b>Speed : </b>
+  <%= @hero.speed %>
+</div>
+
+<div>
+  <%= link_to 'Back', heroes_path, class: 'btn btn-danger' %>
+</div>

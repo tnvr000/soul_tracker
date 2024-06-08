@@ -7,4 +7,18 @@ class HeroesController < ApplicationController
     @heroes = @heroes.where(hero_role: params[:hero_role]) if params[:hero_role].present?
     @heroes = @heroes.where(hero_style: params[:hero_style]) if params[:hero_style].present?
   end
+
+  def show
+    @hero = set_hero
+  end
+
+  private
+
+  def hero
+    @hero ||= set_hero
+  end
+
+  def set_hero
+    Hero.find(params[:id])
+  end
 end
