@@ -10,5 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 0) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_07_053851) do
+  create_table "heros", force: :cascade do |t|
+    t.string "name"
+    t.integer "hero_class"
+    t.integer "hero_type"
+    t.integer "level"
+    t.integer "stars"
+    t.integer "hero_role"
+    t.integer "hero_style"
+    t.integer "combat_power"
+    t.integer "hit_point"
+    t.integer "defence"
+    t.integer "attack"
+    t.integer "speed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 end
