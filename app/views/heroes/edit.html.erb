@@ -31,6 +31,26 @@
   </div>
 
   <div>
+    <%= form.label :hero_class %>
+    <%= form.select :hero_class, hero_class_options %>
+  </div>
+
+  <div>
+    <%= form.label :hero_type %>
+    <%= form.select :hero_type, hero_type_options %>
+  </div>
+
+  <div>
+    <%= form.label :hero_role %>
+    <%= form.select :hero_role, hero_role_options %>
+  </div>
+
+  <div>
+    <%= form.label :hero_style %>
+    <%= form.select :hero_style, hero_style_options %>
+  </div>
+
+  <div>
     <%= link_to 'Back', hero_path(@hero), class: 'btn btn-danger' %>
     <%= form.submit 'Save', class: 'btn btn-success' %>
   </div>
