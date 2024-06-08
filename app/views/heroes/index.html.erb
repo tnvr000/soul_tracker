@@ -1,0 +1,19 @@
+<%= link_to 'All', heroes_path, class: 'btn btn-primary' %>
+<%= link_to 'Strength', heroes_path(hero_style: :strength), class: 'btn btn-primary' %>
+<%= link_to 'Agility', heroes_path(hero_style: :agility), class: 'btn btn-primary' %>
+<%= link_to 'Intelligence', heroes_path(hero_style: :intelligence), class: 'btn btn-primary' %>
+<h2>Showing <%= @heroes.count %></h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Combat Power</th>
+  </tr>
+  <% @heroes.each do |hero| %>
+    <tr>
+      <td><%= hero.name %></td>
+      <td><%= hero.hero_type %></td>
+      <td><%= hero.combat_power %></td>
+    </tr>
+  <% end %>
+</table>
