@@ -1,0 +1,37 @@
+<h1>Edit <%= @hero.name %></h1>
+<%= form_with(model: @hero) do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :combat_power %>
+    <%= form.text_field :combat_power %>
+  </div>
+
+  <div>
+    <%= form.label :attack %>
+    <%= form.text_field :attack %>
+  </div>
+
+  <div>
+    <%= form.label :defence %>
+    <%= form.text_field :defence %>
+  </div>
+
+  <div>
+    <%= form.label :hit_point %>
+    <%= form.text_field :hit_point %>
+  </div>
+
+  <div>
+    <%= form.label :speed %>
+    <%= form.text_field :speed %>
+  </div>
+
+  <div>
+    <%= link_to 'Back', hero_path(@hero), class: 'btn btn-danger' %>
+    <%= form.submit 'Save', class: 'btn btn-success' %>
+  </div>
+<% end %>

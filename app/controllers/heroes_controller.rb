@@ -12,6 +12,18 @@ class HeroesController < ApplicationController
     @hero = set_hero
   end
 
+  def edit
+    @hero = set_hero
+  end
+
+  def update
+    if hero.update(hero_params)
+      redirect_to hero_path(hero), success: 'Hero updated'
+    else
+      render :edit, error: hero.errors.full_messages.first
+    end
+  end
+
   private
 
   def hero
@@ -20,5 +32,10 @@ class HeroesController < ApplicationController
 
   def set_hero
     Hero.find(params[:id])
+  end
+
+  def hero_params
+    params.require(:hero)
+      .permit(:name, :combat_power, :hit_point, :attack, :defence, :speed)
   end
 end

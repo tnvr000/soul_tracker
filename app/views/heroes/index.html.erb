@@ -10,13 +10,14 @@
     <th>Name</th>
     <th>Type</th>
     <th>Combat Power</th>
-    <%# <th colspan=1>Actions</th> %>
+    <th colspan=1>Actions</th>
   </tr>
   <% @heroes.each do |hero| %>
     <tr>
       <td><%= link_to hero.name, hero_path(hero) %></td>
       <td><%= hero.hero_type %></td>
       <td><%= hero.combat_power %></td>
+      <td><%= link_to 'Edit', edit_hero_path(hero) %></td>
     </tr>
   <% end %>
 </table>
