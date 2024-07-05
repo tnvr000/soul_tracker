@@ -4,6 +4,14 @@
   <%= link_to 'Agility', heroes_path(hero_style: :agility), class: 'btn btn-primary' %>
   <%= link_to 'Intelligence', heroes_path(hero_style: :intelligence), class: 'btn btn-primary' %>
 </div>
+<div>
+  <span class="btn btn-default">Order By</span>
+  <%= link_to 'Combat Power', heroes_path(order_by: :combat_power), class: 'btn btn-primary' %>
+  <%= link_to 'Attack', heroes_path(order_by: :attack), class: 'btn btn-primary' %>
+  <%= link_to 'Defence', heroes_path(order_by: :defence), class: 'btn btn-primary' %>
+  <%= link_to 'Hit point', heroes_path(order_by: :hit_point), class: 'btn btn-primary' %>
+  <%= link_to 'speed', heroes_path(order_by: :speed), class: 'btn btn-primary' %>
+</div>
 <h2>Showing <%= @heroes.count %></h2>
 <table>
   <tr>
