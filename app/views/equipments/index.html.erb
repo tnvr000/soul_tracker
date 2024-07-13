@@ -1,0 +1,19 @@
+<h2>Showing <%= @equipments.count %> Equipments</h2>
+<div>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Style</th>
+      <th>Class</th>
+    </tr>
+    <% @equipments.each do |equipment| %>
+      <tr>
+        <td><%= link_to equipment.name, equipment_path(equipment) %></td>
+        <td><%= equipment.equipment_type %></td>
+        <td><%= equipment.equipment_style %></td>
+        <td><%= equipment_class(equipment) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
