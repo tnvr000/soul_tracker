@@ -1,0 +1,20 @@
+<h1><%= @equipment.name %></h1>
+
+<div>
+  <span class="btn btn-primary"><%= @equipment.equipment_style %></span>
+</div>
+
+<div>
+  <b>Class : </b>
+  <%= equipment_class(@equipment) %>
+</div>
+
+<div>
+  <b>Level : </b>
+  <%= @equipment.level %>
+</div>
+
+<div>
+  <%= link_to('Back', equipments_path, class: 'btn btn-primary') %>
+  <%= link_to('Edit', equipment_path(@equipment), class: 'btn btn-warning') %>
+</div>

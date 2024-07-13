@@ -3,6 +3,6 @@ module EquipmentsHelper
     str = equipment.equipment_class
     return str if equipment.equipment_class_level.zero?
 
-    str << '*' * equipment.equipment_class_level
+    str + '*' * equipment.equipment_class_level
   end
 end
