@@ -2,10 +2,15 @@
 
 class HeroesController < ApplicationController
   def index
-    @heroes = Hero.all.order(order_by)
-    @heroes = @heroes.where(hero_type: params[:hero_type]) if params[:hero_type].present?
-    @heroes = @heroes.where(hero_role: params[:hero_role]) if params[:hero_role].present?
-    @heroes = @heroes.where(hero_style: params[:hero_style]) if params[:hero_style].present?
+    @order_by = params[:order_by] || :combat_power
+    @hero_type = params[:hero_type].to_i.in?(Hero.hero_types.values) ? params[:hero_type].to_i : 0
+    @hero_role = params[:hero_role].to_i.in?(Hero.hero_roles.values) ? params[:hero_role].to_i : 0
+    @hero_style = params[:hero_style].to_i.in?(Hero.hero_styles.values) ? params[:hero_style].to_i : 0
+
+    @heroes = Hero.order(@order_by.to_sym => :desc)
+    @heroes = @heroes.where(hero_type: @hero_type) if @hero_type.nonzero?
+    @heroes = @heroes.where(hero_role: @hero_role) if @hero_role.nonzero?
+    @heroes = @heroes.where(hero_style: @hero_style) if @hero_style.nonzero?
   end
 
   def show
@@ -25,14 +30,6 @@ class HeroesController < ApplicationController
   end
 
   private
-
-  def order_by
-    return { combat_power: :desc } if params[:order_by].blank?
-
-    {
-      params[:order_by].to_sym => :desc
-    }
-  end
 
   def hero
     @hero ||= set_hero
