@@ -27,6 +27,20 @@ class EquipmentsController < ApplicationController
     redirect_to equipments_path
   end
 
+  def edit
+    @equipment = set_equipment
+  end
+
+  def update
+    equipment.assign_attributes(equipment_params)
+
+    if equipment.save
+      redirect_to(equipments_path)
+    else
+      render :edit
+    end
+  end
+
   private
 
   def equipment_params
