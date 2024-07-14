@@ -41,6 +41,12 @@ class EquipmentsController < ApplicationController
     end
   end
 
+  def destroy
+    equipment.destroy
+
+    redirect_to equipments_path
+  end
+
   private
 
   def equipment_params
