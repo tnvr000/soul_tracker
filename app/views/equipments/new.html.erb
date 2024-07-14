@@ -1,0 +1,38 @@
+<h1>Add Equipment</h1>
+<%= link_to 'Back', equipments_path %>
+
+<%= form_with(model: @equipment, url: equipments_path) do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :level %>
+    <%= form.text_field :level %>
+  </div>
+
+  <div>
+    <%= form.label :equipment_type %>
+    <%= form.select :equipment_type, equipment_type_form_options %>
+  </div>
+
+  <div>
+    <%= form.label :equipment_style %>
+    <%= form.select :equipment_style, equipment_style_form_options %>
+  </div>
+
+  <div>
+    <%= form.label :equipment_class %>
+    <%= form.select :equipment_class, equipment_class_form_options %>
+  </div>
+
+  <div>
+    <%= form.label :equipment_class_level %>
+    <%= form.select :equipment_class_level, equipmetn_class_level_form_options %>
+  </div>
+
+  <div>
+    <%= form.submit 'Save' %>
+  </div>
+<% end %>
