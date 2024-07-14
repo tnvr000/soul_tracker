@@ -7,6 +7,7 @@ HERO_PARAMS = %I[
   attack
   defence
   speed
+  hero_role
   hero_class
   hero_type
   hero_style

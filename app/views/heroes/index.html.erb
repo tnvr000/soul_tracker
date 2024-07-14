@@ -1,9 +1,9 @@
 <%= form_with(url: heroes_path, method: :get, data: { controller: "search-form", action: "change->search-form#submit", turbo_frame: "search_result", turbo_action: "advance" }) do |form| %>
   <div>
-    <%= form.select(:hero_type, hero_type_options, selected: @hero_type) %>
-    <%= form.select(:hero_role, hero_role_options, selected: @hero_role) %>
-    <%= form.select(:hero_style, hero_style_options, selected: @hero_style) %>
-    <%= form.select(:order_by, hero_order_options, selected: @order_by) %>
+    <%= form.select(:hero_type, hero_type_filter_options, selected: @hero_type) %>
+    <%= form.select(:hero_role, hero_role_filter_options, selected: @hero_role) %>
+    <%= form.select(:hero_style, hero_style_filter_options, selected: @hero_style) %>
+    <%= form.select(:order_by, hero_order_filter_options, selected: @order_by) %>
   </div>
 <% end %>
 
@@ -21,10 +21,10 @@
       </tr>
       <% @heroes.each do |hero| %>
         <tr>
-          <td><%= link_to hero.name, hero_path(hero) %></td>
+          <td><%= link_to hero.name, hero_path(hero), data: { turbo_frame: '_top' } %></td>
           <td><%= hero.hero_type %></td>
           <td><%= hero.combat_power %></td>
-          <td><%= link_to 'Edit', edit_hero_path(hero) %></td>
+          <td><%= link_to 'Edit', edit_hero_path(hero), data: { turbo_frame: '_top' } %></td>
         </tr>
       <% end %>
     </table>
