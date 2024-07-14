@@ -7,6 +7,7 @@
       <th>Type</th>
       <th>Style</th>
       <th>Class</th>
+      <th colspan="2">Actions</th>
     </tr>
     <% @equipments.each do |equipment| %>
       <tr>
@@ -14,6 +15,8 @@
         <td><%= equipment.equipment_type %></td>
         <td><%= equipment.equipment_style %></td>
         <td><%= equipment_class(equipment) %></td>
+        <td><%= link_to 'Edit', edit_equipment_path(equipment) %></td>
+        <td><%= link_to 'Duplicate', duplicate_equipment_path(equipment), data: { 'turbo-method' => :post } %></td>
       </tr>
     <% end %>
   </table>

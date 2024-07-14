@@ -21,6 +21,12 @@ class EquipmentsController < ApplicationController
     @equipment = set_equipment
   end
 
+  def duplicate
+    new_equipment = equipment.dup
+    new_equipment.save
+    redirect_to equipments_path
+  end
+
   private
 
   def equipment_params
