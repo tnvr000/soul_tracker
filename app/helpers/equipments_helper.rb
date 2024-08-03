@@ -34,7 +34,38 @@ module EquipmentsHelper
 
   def equipmetn_class_level_form_options
     [
-      ['Select Class Level', 0],
+      ['No Stars', 0],
+      ['*', 1],
+      ['**', 2],
+      ['***', 3]
+    ]
+  end
+
+  def equipment_style_filter_options
+    Equipment
+      .equipment_styles
+      .map { |equipment_style, value| [equipment_style.to_s.titlecase, value] }
+      .unshift(['All Styles', 0])
+  end
+
+  def equipment_type_filter_options
+    Equipment
+      .equipment_types
+      .map { |equipment_type, value| [equipment_type.to_s.titlecase, value] }
+      .unshift(['All Types', 0])
+  end
+
+  def equipment_class_filter_options
+    Equipment
+      .equipment_classes
+      .map { |equipment_class, value| [equipment_class.to_s.titlecase, value] }
+      .unshift(['All Classes', 0])
+  end
+
+  def equipment_class_level_filter_options
+    [
+      ['All Class Level', -1],
+      ['-', 0],
       ['*', 1],
       ['**', 2],
       ['***', 3]
