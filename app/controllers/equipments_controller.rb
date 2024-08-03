@@ -18,7 +18,7 @@ class EquipmentsController < ApplicationController
     @equipment = Equipment.new(equipment_params)
 
     if equipment.save
-      redirect_to(equipment_path(equipment))
+      redirect_to(equipments_path)
     else
       render :new
     end
@@ -60,23 +60,16 @@ class EquipmentsController < ApplicationController
     session['equipment'] ||= {}
 
     update_equipment_order_by_session_filter_params
-    update_equipment_style_session_filter_params
     update_equipment_type_session_filter_params
+    update_equipment_style_session_filter_params
     update_equipment_class_session_filter_params
     update_equipment_class_level_session_filter_params
   end
 
   def update_equipment_order_by_session_filter_params
-    return :equipment_class if params[:order_by].blank?
+    return if params[:order_by].blank?
 
     session['equipment']['order_by'] = params[:order_by]
-  end
-
-  def update_equipment_style_session_filter_params
-    return if params[:equipment_style].blank?
-
-    session['equipment']['equipment_style'] =
-      Equipment.valid_equipment_style(params[:equipment_style])
   end
 
   def update_equipment_type_session_filter_params
@@ -84,6 +77,13 @@ class EquipmentsController < ApplicationController
 
     session['equipment']['equipment_type'] =
       Equipment.valid_equipment_type(params[:equipment_type])
+  end
+
+  def update_equipment_style_session_filter_params
+    return if params[:equipment_style].blank?
+
+    session['equipment']['equipment_style'] =
+      Equipment.valid_equipment_style(params[:equipment_style])
   end
 
   def update_equipment_class_session_filter_params
@@ -102,9 +102,9 @@ class EquipmentsController < ApplicationController
 
   def assign_filter_instance_variable
     @order_by = session['equipment']['order_by'] || :equipment_class
-    @equipment_type = session['equipment']['equipment_type']
-    @equipment_style = session['equipment']['equipment_style']
-    @equipment_class = session['equipment']['equipment_class']
+    @equipment_type = session['equipment']['equipment_type'].to_i
+    @equipment_style = session['equipment']['equipment_style'].to_i
+    @equipment_class = session['equipment']['equipment_class'].to_i
     @equipment_class_level = session['equipment']['equipment_class_level'] || -1
   end
 

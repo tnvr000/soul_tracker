@@ -4,16 +4,16 @@ class Equipment < ApplicationRecord
   enum :equipment_class, { normal: 1, advanced: 2, rare: 3, epic: 4, legendary: 5, mythic: 6 }
 
   class << self
-    def valid_equipment_style(equipment_style)
-      return 0 unless equipment_style.to_i.in?(equipment_styles.values)
-
-      equipment_style.to_i
-    end
-
     def valid_equipment_type(equipment_type)
       return 0 unless equipment_type.to_i.in?(equipment_types.values)
 
       equipment_type.to_i
+    end
+
+    def valid_equipment_style(equipment_style)
+      return 0 unless equipment_style.to_i.in?(equipment_styles.values)
+
+      equipment_style.to_i
     end
 
     def valid_equipment_class(equipment_class)
