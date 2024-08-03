@@ -1,3 +1,4 @@
-web: env RUBY_DEBUG_OPEN=true bin/rails server
+
+web: rdbg -n --open=vscode -c -- bin/rails s
 js: yarn build --watch
 css: yarn watch:css
