@@ -1,1 +1,21 @@
 <h1>Track Heroes and Equipments</h1>
+<h2>Next Hero to Breakthrough</h2>
+<h3><%= @next_hero_to_breakthrough.name %></h3>
+<div>
+  <b>Combat Power : </b>
+  <%= @next_hero_to_breakthrough.combat_power %>
+</div>
+
+<div>
+  <b>Level : </b>
+  <%= @next_hero_to_breakthrough.level %>
+</div>
+
+<div>
+  <b>Stars : </b>
+  <%= @next_hero_to_breakthrough.stars %>
+</div>
+
+<div>
+  <%= link_to 'Edit', edit_hero_path(@next_hero_to_breakthrough), class: 'btn btn-primary' %>
+</div>

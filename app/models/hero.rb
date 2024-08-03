@@ -5,6 +5,18 @@ class Hero < ApplicationRecord
   enum :hero_role, { tank: 1, dealer: 2, supporter: 3, healer: 4 }
 
   class << self
+    def next_hero_to_breakthrough
+      limit_level = self
+        .select(:level)
+        .order(level: :desc)
+        .distinct.offset(1)
+        .limit(1)
+        .first
+        .level
+
+      where(level: limit_level).order(combat_power: :desc).first
+    end
+
     def valid_hero_class(hero_class)
       return 0 unless hero_class.to_i.in?(hero_classes.values)
 
