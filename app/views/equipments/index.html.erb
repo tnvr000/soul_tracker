@@ -1,10 +1,10 @@
 <%= link_to 'New', new_equipment_path %>
 <%= form_with(url: equipments_path, method: :get, data: { controller: "search-form", action: "change->search-form#submit", turbo_frame: "search_result", turboo_action: "advance" }) do |form| %>
   <div>
-    <%= form.select(:equipment_style, equipment_style_filter_options, selected: @equipment_style) %>
-    <%= form.select(:equipment_type, equipment_type_filter_options, selected: @equipment_type) %>
-    <%= form.select(:equipment_class, equipment_class_filter_options, selected: @equipment_class) %>
-    <%= form.select(:equipment_class_level, equipment_class_level_filter_options, selected: @equipment_class_level) %>
+    <%= render partial: 'shared/filter_options', locals: { name: :equipment_style, options: equipment_style_filter_options, form: form } %>
+    <%= render partial: 'shared/filter_options', locals: { name: :equipment_type, options: equipment_type_filter_options, form: form } %>
+    <%= render partial: 'shared/filter_options', locals: { name: :equipment_class, options: equipment_class_filter_options, form: form } %>
+    <%= render partial: 'shared/filter_options', locals: { name: :equipment_class_level, options: equipment_class_level_filter_options, form: form } %>
   </div>
 <% end %>
 <h2>Showing <%= @equipments.count %> Equipments</h2>
