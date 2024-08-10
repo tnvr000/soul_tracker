@@ -1,0 +1,34 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.filter_container {
+  padding: 1px 3px;
+}
+
+.custom_checkbox {
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.custom_checkbox input {
+  display: none
+}
+
+.custom_checkbox input:checked ~ label {
+  background-color: #FFD700;
+}
+
+.custom_checkbox label {
+  border: 1px solid #FFD700;
+  border-radius: 10px;
+  min-width: 135px;
+  padding: 3px 7px;
+  text-align: center;
+}

@@ -1,0 +1,8 @@
+<div class="filter_container">
+  <% options.each do |option, value, checked| %>
+    <span class="custom_checkbox">
+      <%= form.radio_button name, value, checked: checked %>
+      <%= form.label "#{name}_#{value}", option %>
+    </span>
+  <% end %>
+</div>

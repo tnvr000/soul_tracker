@@ -1,10 +1,8 @@
 <%= form_with(url: heroes_path, method: :get, data: { controller: "search-form", action: "change->search-form#submit", turbo_frame: "search_result", turbo_action: "advance" }) do |form| %>
-  <div>
-    <%= form.select(:hero_type, hero_type_filter_options, selected: @hero_type) %>
-    <%= form.select(:hero_role, hero_role_filter_options, selected: @hero_role) %>
-    <%= form.select(:hero_style, hero_style_filter_options, selected: @hero_style) %>
-    <%= form.select(:order_by, hero_order_filter_options, selected: @order_by) %>
-  </div>
+  <%= render partial: 'shared/filter_options', locals: { name: :hero_type, options: hero_type_filter_options, form: form } %>
+  <%= render partial: 'shared/filter_options', locals: { name: :hero_role, options: hero_role_filter_options, form: form } %>
+  <%= render partial: 'shared/filter_options', locals: { name: :hero_style, options: hero_style_filter_options, form: form } %>
+  <%= render partial: 'shared/filter_options', locals: { name: :order_by, options: hero_order_filter_options, form: form } %>
 <% end %>
 
 <hr />
