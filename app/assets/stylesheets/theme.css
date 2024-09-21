@@ -10,6 +10,9 @@ html, body {
 
 .filter_container {
   padding: 1px 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px
 }
 
 .custom_checkbox {
@@ -29,6 +32,7 @@ html, body {
   border: 1px solid #FFD700;
   border-radius: 10px;
   min-width: 135px;
+  width: 100%;
   padding: 3px 7px;
   text-align: center;
 }
