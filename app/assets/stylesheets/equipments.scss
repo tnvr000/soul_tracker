@@ -1,9 +1,9 @@
-.heroes-container {
+.equipments-container {
   display: flex;
   flex-direction: column;
   padding: 10px 10px;
 
-  .hero-header {
+  .equipment-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -19,7 +19,7 @@
     }
   }
 
-  .hero-container {
+  .equipment-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -50,7 +50,7 @@
       }
     }
 
-    .name > {
+    .name {
       a {
         color: var(--primary-text-color);
         text-decoration: none;

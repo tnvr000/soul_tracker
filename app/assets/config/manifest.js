@@ -3,3 +3,4 @@
 
 //= link theme.css
 //= link heroes.css
+//= link equipments.css
