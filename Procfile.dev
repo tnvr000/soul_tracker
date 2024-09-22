@@ -1,4 +1,4 @@
 
-web: rdbg -n --open=vscode -c -- bin/rails s
+web: rdbg -n --open=vscode -c -- bin/rails server
 js: yarn build --watch
 css: yarn watch:css

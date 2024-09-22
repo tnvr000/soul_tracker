@@ -2,3 +2,4 @@
 //= link_tree ../builds
 
 //= link theme.css
+//= link heroes.css

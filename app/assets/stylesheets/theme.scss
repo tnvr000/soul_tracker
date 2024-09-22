@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+  --primary-color: #FFD700;
+  --secondary-color: #00e2bf;
+
+  --primary-table-color: #fffbe8;
+  --secondary-table-color: #e4e9eb;
+
+  --primary-bg-color: #021526;
+  --secondary-bg-color-1: #212529;
+  --secondary-bg-color-2: #373a3e;
+
+  --primary-text-color: #f2fedc;
+  --secondary-text-color: #021526;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--primary-bg-color);
+  color: var(--primary-text-color);
+}
+
+.filter_container {
+  padding: 1px 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px
+}
+
+.custom_checkbox {
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.custom_checkbox input {
+  display: none
+}
+
+.custom_checkbox input:checked ~ label {
+  background-color: var(--primary-color);
+  color: var(--secondary-text-color);
+}
+
+.custom_checkbox label {
+  border: 1px solid var(--primary-color);
+  border-radius: 10px;
+  min-width: 135px;
+  width: 100%;
+  padding: 3px 7px;
+  text-align: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}

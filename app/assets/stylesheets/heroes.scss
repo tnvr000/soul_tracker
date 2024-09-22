@@ -1,0 +1,65 @@
+.heroes-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 10px;
+}
+
+.heroes-container .hero-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--primary-color);
+  color: var(--secondary-text-color);
+  padding: 5px 10px;
+  border-radius: 10px 10px 0 0;
+}
+
+.hero-header .data {
+  width: 100%;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.heroes-container .hero-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px 10px;
+}
+
+.heroes-container .hero-container:nth-child(odd) {
+  background-color: var(--secondary-bg-color-1);
+}
+
+.heroes-container .hero-container:nth-child(even) {
+  background-color: var(--secondary-bg-color-2);
+}
+
+.hero-container:last-child {
+  border-radius: 0 0 10px 10px;
+}
+
+.hero-container .data {
+  width: 100%;
+  text-align: center;
+}
+
+.hero-container .name > a {
+  color: var(--primary-text-color);
+  text-decoration: none;
+  font-weight: bolder;
+}
+
+.hero-container .action > a {
+  color: var(--primary-text-color);
+  text-decoration: none;
+  font-weight: bolder;
+}
+
+.hero-container .data:first-child {
+  text-align: left;
+}
+
+.hero-container .data:last-child {
+  text-align: right;
+}

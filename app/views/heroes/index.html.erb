@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag "heroes", "data-turbo-track": "reload" %>
 <div class="row">
   <div class="col-lg-3">
     <%= form_with(url: heroes_path, method: :get, class: 'row', data: { controller: "search-form", action: "change->search-form#submit", turbo_frame: "search_result", turbo_action: "advance" }) do |form| %>
@@ -23,23 +24,31 @@
   <div class="col-lg-9">
     <%= turbo_frame_tag "search_result" do %>
       <h2>Showing <%= @heroes.count %> Heroes</h2>
-      <div>
-        <table>
-          <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Combat Power</th>
-            <th colspan=1>Actions</th>
-          </tr>
-          <% @heroes.each do |hero| %>
-            <tr>
-              <td><%= link_to hero.name, hero_path(hero), data: { turbo_frame: '_top' } %></td>
-              <td><%= hero.hero_type %></td>
-              <td><%= hero.combat_power %></td>
-              <td><%= link_to 'Edit', edit_hero_path(hero), data: { turbo_frame: '_top' } %></td>
-            </tr>
-          <% end %>
-        </table>
+      <div class="heroes-container">
+        <div class="hero-header">
+          <div class="data">Name</div>
+          <div class="data">Type</div>
+          <div class="data">Combat Power</div>
+          <div class="data">Attack</div>
+          <div class="data">Defence</div>
+          <div class="data">Hit Point</div>
+          <div class="data">Actions</div>
+        </div>
+        <% @heroes.each do |hero| %>
+          <div class="hero-container">
+            <div class="data name"><%= link_to hero.name, hero_path(hero), data: { turbo_framd: '_top' } %></div>
+            <div class="data"><%= hero.hero_type %></div>
+            <div class="data"><%= hero.combat_power %></div>
+            <div class="data"><%= hero.attack %></div>
+            <div class="data"><%= hero.defence %></div>
+            <div class="data"><%= hero.hit_point %></div>
+            <div class="data action">
+              <%= link_to edit_hero_path(hero), data: { turbo_frame: '_top' } do %>
+                <i class="bi bi-pencil-square"></i>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>
