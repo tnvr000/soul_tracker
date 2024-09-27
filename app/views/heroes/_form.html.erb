@@ -1,0 +1,66 @@
+<%= form_with(model: hero, url: submit_path, method: submit_method(hero)) do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :combat_power %>
+    <%= form.text_field :combat_power %>
+  </div>
+
+  <div>
+    <%= form.label :attack %>
+    <%= form.text_field :attack %>
+  </div>
+
+  <div>
+    <%= form.label :defence %>
+    <%= form.text_field :defence %>
+  </div>
+
+  <div>
+    <%= form.label :hit_point %>
+    <%= form.text_field :hit_point %>
+  </div>
+
+  <div>
+    <%= form.label :speed %>
+    <%= form.text_field :speed %>
+  </div>
+
+  <div>
+    <%= form.label :level %>
+    <%= form.text_field :level %>
+  </div>
+
+  <div>
+    <%= form.label :stars %>
+    <%= form.text_field :stars %>
+  </div>
+
+  <div>
+    <%= form.label :hero_class %>
+    <%= form.select :hero_class, hero_class_form_options %>
+  </div>
+
+  <div>
+    <%= form.label :hero_type %>
+    <%= form.select :hero_type, hero_type_form_options %>
+  </div>
+
+  <div>
+    <%= form.label :hero_role %>
+    <%= form.select :hero_role, hero_role_form_options %>
+  </div>
+
+  <div>
+    <%= form.label :hero_style %>
+    <%= form.select :hero_style, hero_style_form_options %>
+  </div>
+
+  <div>
+    <%= link_to 'Back', heroes_path, class: 'btn btn-danger' %>
+    <%= form.submit 'Save', class: 'btn btn-success' %>
+  </div>
+<% end %>

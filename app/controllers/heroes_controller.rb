@@ -5,10 +5,24 @@ class HeroesController < ApplicationController
     update_session_filter_params
     assign_filter_instance_variable
 
-    @heroes = Hero.order(@order_by.to_sym => :desc)
+    @heroes = Hero.where(hero_class: :epic).order(@order_by.to_sym => :desc)
     @heroes = @heroes.where(hero_type: @hero_type) if @hero_type.nonzero?
     @heroes = @heroes.where(hero_style: @hero_style) if @hero_style.nonzero?
     @heroes = @heroes.where(hero_role: @hero_role) if @hero_role.nonzero?
+  end
+
+  def new
+    @hero = Hero.new
+  end
+
+  def create
+    @hero = Hero.new(hero_params)
+
+    if hero.save
+      redirect_to heroes_path, success: 'Hero created'
+    else
+      render :edit, error: hero.errors.full_messages.first
+    end
   end
 
   def show

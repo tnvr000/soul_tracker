@@ -23,9 +23,14 @@
   </div>
   <div class="col-lg-9">
     <%= turbo_frame_tag "search_result" do %>
-      <h2>Showing <%= @heroes.count %> Heroes</h2>
+      <div class="hero-header">
+        <h2>Showing <%= @heroes.count %> Heroes</h2>
+        <%= link_to new_hero_path, data: { turbo_frame: '_top' } do %>
+          <i class="bi bi-plus-square-fill"></i>
+        <% end %>
+      </div>
       <div class="heroes-container">
-        <div class="hero-header">
+        <div class="hero-container-header">
           <div class="data">Name</div>
           <div class="data">Type</div>
           <div class="data">Combat Power</div>

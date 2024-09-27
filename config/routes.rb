@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root 'pages#index'
 
-  resources :heroes, only: %i[index show edit update]
+  resources :heroes
   resources :equipments do
     member do
       post :duplicate

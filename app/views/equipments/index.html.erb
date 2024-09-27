@@ -1,5 +1,4 @@
 <%= stylesheet_link_tag "equipments", "data-turbo-track": "reload" %>
-<%= link_to 'New', new_equipment_path %>
 <div class="row">
   <div class="col-lg-3">
     <%= form_with(url: equipments_path, method: :get, class: 'row', data: { controller: "search-form", action: "change->search-form#submit", turbo_frame: "search_result", turboo_action: "advance" }) do |form| %>
@@ -21,7 +20,12 @@
     <% end %>
   </div>
   <div class="col-lg-9">
-    <h2>Showing <%= @equipments.count %> Equipments</h2>
+    <div class="equipment-container-header">
+      <h2>Showing <%= @equipments.count %> Equipments</h2>
+      <%= link_to new_equipment_path do %>
+        <i class="bi bi-plus-square-fill"></i>
+      <% end %>
+    </div>
     <div class="equipments-container">
       <div class="equipment-header">
         <div class="data">Name</div>

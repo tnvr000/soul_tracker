@@ -1,12 +1,4 @@
 module EquipmentsHelper
-  def submit_url
-    @equipment.persisted? ? equipment_path(@equipment) : equipments_path
-  end
-
-  def submit_method
-    @equipment.persisted? ? :patch : :post
-  end
-
   def equipment_class(equipment)
     str = equipment.equipment_class
     return str if equipment.equipment_class_level.zero?

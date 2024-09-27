@@ -1,4 +1,4 @@
 <h1>Add Equipment</h1>
 <%= link_to 'Back', equipments_path %>
 
-<%= render partial: 'form', locals: { equipment: @equipment } %>
+<%= render partial: 'form', locals: { equipment: @equipment, submit_path: equipments_path } %>

@@ -1,0 +1,4 @@
+<h1>Add Hero</h1>
+<%= link_to 'Back', heroes_path %>
+
+<%= render partial: 'form', locals: { hero: @hero, submit_path: heroes_path } %>
