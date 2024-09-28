@@ -24,7 +24,7 @@
       <h2>Showing <%= @equipments.count %> Equipments</h2>
       <div>
         <%= link_to equipments_path(format: :csv), data: { turbo_frame: '_top' } do %>
-          <i class="bi bi-box-arrow-up"></i>
+          <i class="bi bi-download"></i>
         <% end %>
         <%= link_to new_equipment_path do %>
           <i class="bi bi-plus-square-fill"></i>

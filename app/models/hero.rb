@@ -6,6 +6,11 @@ class Hero < ApplicationRecord
   enum :hero_style, { strength: 1, agility: 2, intelligence: 3 }
   enum :hero_role, { tank: 1, dealer: 2, supporter: 3, healer: 4 }
 
+  CSV_HEADERS = {
+    id: 'Id', name: 'Name', hero_class: 'Class', hero_type: 'Type', level: 'Level', stars: 'Stars', hero_role: 'Role', hero_style: 'Style',
+    combat_power: 'Combat Power', hit_point: 'Hit Point', defence: 'Defence', attack: 'Attack', speed: 'Speed', count: 'Count'
+  }
+
   class << self
     def next_hero_to_breakthrough
       limit_level = self
@@ -47,11 +52,34 @@ class Hero < ApplicationRecord
       attributes = %w[id name hero_class hero_type level stars hero_role hero_style combat_power hit_point defence attack speed count]
 
       CSV.generate(headers: true) do |csv|
-        csv << attributes
+        csv << CSV_HEADERS.values
 
         all.each do |hero|
-          csv << attributes.map { |attr| hero.send(attr) }
+          csv << CSV_HEADERS.keys.map { |attr| hero.send(attr) }
         end
+      end
+    end
+
+    def import(file)
+      CSV.foreach(file, headers: true) do |row|
+        hero = Hero.find_or_initialize_by(name: row[CSV_HEADERS[:name]])
+        puts hero
+        hero.assign_attributes(
+          hero_class: row[CSV_HEADERS[:hero_class]],
+          hero_type: row[CSV_HEADERS[:hero_type]],
+          level: row[CSV_HEADERS[:level]],
+          stars: row[CSV_HEADERS[:stars]],
+          hero_role: row[CSV_HEADERS[:hero_role]],
+          hero_style: row[CSV_HEADERS[:hero_style]],
+          combat_power: row[CSV_HEADERS[:combat_power]],
+          hit_point: row[CSV_HEADERS[:hit_point]],
+          defence: row[CSV_HEADERS[:defence]],
+          attack: row[CSV_HEADERS[:attack]],
+          speed: row[CSV_HEADERS[:speed]],
+          count: row[CSV_HEADERS[:count]],
+        )
+
+        hero.save
       end
     end
   end

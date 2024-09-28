@@ -26,8 +26,11 @@
       <div class="hero-header">
         <h2>Showing <%= @heroes.count %> Heroes</h2>
         <div>
+          <%= link_to importer_heroes_path, data: { turbo_frame: '_top'} do %>
+            <i class="bi bi-upload"></i>
+          <% end %>
           <%= link_to heroes_path(format: :csv), data: { turbo_frame: '_top' } do %>
-            <i class="bi bi-box-arrow-up"></i>
+            <i class="bi bi-download"></i>
           <% end %>
           <%= link_to statistics_heroes_path, data: { turbo_frame: '_top' } do %>
             <i class="bi bi-bar-chart-fill"></i>

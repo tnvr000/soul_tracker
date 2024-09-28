@@ -85,6 +85,15 @@ class HeroesController < ApplicationController
     end
   end
 
+  def importer; end
+
+  def import
+    file = File.open(params[:file])
+    Hero.import(file)
+
+    redirect_to heroes_path, success: 'Heroes imported'
+  end
+
   private
 
   def update_session_filter_params

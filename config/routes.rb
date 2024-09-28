@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :heroes do
     collection do
       get :statistics
+      get :importer
+      post :import
     end
   end
   
