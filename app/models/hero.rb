@@ -20,13 +20,10 @@ class Hero < ApplicationRecord
 
   class << self
     def next_hero_to_breakthrough
-      limit_level = self
-        .select(:level)
-        .order(level: :desc)
-        .distinct.offset(1)
-        .limit(1)
-        .first
-        .level
+      limit_level = self.select(:level)
+        .order(level: :desc).distinct
+        .offset(1).limit(1)
+        .first&.level.to_i
 
       where(level: limit_level).order(combat_power: :desc).first
     end
