@@ -8,7 +8,12 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root 'pages#index'
 
-  resources :heroes
+  resources :heroes do
+    collection do
+      get :statistics
+    end
+  end
+  
   resources :equipments do
     member do
       post :duplicate

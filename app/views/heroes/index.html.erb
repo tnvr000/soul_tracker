@@ -25,9 +25,14 @@
     <%= turbo_frame_tag "search_result" do %>
       <div class="hero-header">
         <h2>Showing <%= @heroes.count %> Heroes</h2>
-        <%= link_to new_hero_path, data: { turbo_frame: '_top' } do %>
-          <i class="bi bi-plus-square-fill"></i>
-        <% end %>
+        <div>
+          <%= link_to statistics_heroes_path, data: { turbo_frame: '_top' } do %>
+            <i class="bi bi-bar-chart-fill"></i>
+          <% end %>
+          <%= link_to new_hero_path, data: { turbo_frame: '_top' } do %>
+            <i class="bi bi-plus-square-fill"></i>
+          <% end %>
+        </div>
       </div>
       <div class="heroes-container">
         <div class="hero-container-header">
@@ -41,7 +46,7 @@
         </div>
         <% @heroes.each do |hero| %>
           <div class="hero-container">
-            <div class="data name"><%= link_to hero.name, hero_path(hero), data: { turbo_framd: '_top' } %></div>
+            <div class="data name"><%= link_to hero.name, hero_path(hero), data: { turbo_frame: '_top' } %></div>
             <div class="data"><%= hero.hero_type %></div>
             <div class="data"><%= hero.combat_power %></div>
             <div class="data"><%= hero.attack %></div>

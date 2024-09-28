@@ -13,6 +13,7 @@ HERO_PARAMS = %I[
   hero_class
   hero_type
   hero_style
+  count
 ].freeze
 
 EQUIPMENT_PARAMS = %I[

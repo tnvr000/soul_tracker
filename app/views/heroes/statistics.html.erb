@@ -1,0 +1,39 @@
+<%= stylesheet_link_tag "heroes", "data-turbo-track": "reload" %>
+
+<div class="row">
+  <div class="col-lg-3">
+    <%= form_with(url: statistics_heroes_path, method: :get, class: 'row', data: { controller: "search-form", action: "change->search-form#submit", turbo_frame: "search_result", turbo_action: "advance" }) do |form| %>
+      <%= render partial: 'shared/filter_options', locals: { name: :hero_type, options: hero_type_filter_options, form: form } %>
+    <% end %>
+  </div>
+  <div class="col-lg-9">
+    <%= turbo_frame_tag "search_result" do %>
+      <div class="hero-header">
+        <h2>Showing <%= @heroes.count %> Heroes</h2>
+        <%= link_to new_hero_path, data: { turbo_frame: '_top' } do %>
+          <i class="bi bi-plus-square-fill"></i>
+        <% end %>
+      </div>
+      <div class="heroes-container">
+        <div class="hero-container-header">
+          <div class="data">Name</div>
+          <div class="data">Type</div>
+          <div class="data">Count</div>
+          <div class="data">Actions</div>
+        </div>
+        <% @heroes.each do |hero| %>
+          <div class="hero-container">
+            <div class="data name"><%= link_to hero.name, hero_path(hero), data: { turbo_frame: '_top' } %></div>
+            <div class="data"><%= hero.hero_type %></div>
+            <div class="data"><%= hero.count %></div>
+            <div class="data action">
+              <%= link_to edit_hero_path(hero), data: { turbo_frame: '_top' } do %>
+                <i class="bi bi-pencil-square"></i>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

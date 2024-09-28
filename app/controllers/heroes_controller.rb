@@ -18,10 +18,22 @@ class HeroesController < ApplicationController
   def create
     @hero = Hero.new(hero_params)
 
-    if hero.save
-      redirect_to heroes_path, success: 'Hero created'
-    else
-      render :edit, error: hero.errors.full_messages.first
+    respond_to do |format|
+      format.html do
+        if hero.save
+          redirect_to heroes_path, success: 'Hero Created'
+        else
+          render :edit, error: first_error(hero)
+        end
+      end
+
+      format.json do
+        if hero.save
+          render json: hero, status: :created
+        else
+          render json: { message: first_error(hero) }, status: :unprocessable_entity
+        end
+      end
     end
   end
 
@@ -34,11 +46,31 @@ class HeroesController < ApplicationController
   end
 
   def update
-    if hero.update(hero_params)
-      redirect_to heroes_path, success: 'Hero updated'
-    else
-      render :edit, error: hero.errors.full_messages.first
+    hero.assign_attributes(hero_params)
+
+    respond_to do |format|
+      format.html do
+        if hero.save
+          redirect_to heroes_path, success: 'Hero Updated'
+        else
+          render :edit, error: first_error(hero)
+        end
+      end
+
+      format.json do
+        if hero.save
+          render json: hero, status: :ok
+        else
+          render json: { message: first_error(hero) }, status: :unprocessable_entity
+        end
+      end
     end
+  end
+
+  def statistics
+    @hero_type = params[:hero_type].to_i
+    @heroes = Hero.where(hero_class: :rare).order(:hero_type)
+    @heroes = @heroes.where(hero_type: @hero_type) if @hero_type.nonzero?
   end
 
   private
