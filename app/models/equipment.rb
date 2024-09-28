@@ -5,10 +5,16 @@ class Equipment < ApplicationRecord
   enum :equipment_type, { weapon: 1, headwear: 2, bodywear: 3, footwear: 4 }
   enum :equipment_class, { normal: 1, advanced: 2, rare: 3, epic: 4, legendary: 5, mythic: 6 }
 
+  before_create :set_unique_key
+
   HEADERS = { 
-    id: 'Id', name: 'Name', equipment_type: 'Type', equipment_style: 'Style', equipment_class: 'Class',
-    equipment_class_level: 'Class level', level: 'Level'
+    name: 'Name', equipment_type: 'Type', equipment_style: 'Style', equipment_class: 'Class',
+    equipment_class_level: 'Class level', level: 'Level', unique_key: 'Key'
   }
+
+  def set_unique_key
+    self.unique_key = SecureRandom.hex(10)
+  end
 
   class << self
     def valid_equipment_type(equipment_type)
@@ -47,7 +53,7 @@ class Equipment < ApplicationRecord
 
     def import(file)
       CSV.foreach(file, headers: true) do |row|
-        equipment = Equipment.find_by(id: row[HEADERS[:id]])
+        equipment = Equipment.find_by(unique_key: row[HEADERS[:unique_key]])
         equipment = Equipment.new if equipment.blank?
 
         equipment.assign_attributes(

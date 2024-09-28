@@ -6,10 +6,17 @@ class Hero < ApplicationRecord
   enum :hero_style, { strength: 1, agility: 2, intelligence: 3 }
   enum :hero_role, { tank: 1, dealer: 2, supporter: 3, healer: 4 }
 
+  before_create :set_unique_key
+
   CSV_HEADERS = {
-    id: 'Id', name: 'Name', hero_class: 'Class', hero_type: 'Type', level: 'Level', stars: 'Stars', hero_role: 'Role', hero_style: 'Style',
-    combat_power: 'Combat Power', hit_point: 'Hit Point', defence: 'Defence', attack: 'Attack', speed: 'Speed', count: 'Count'
+    name: 'Name', hero_class: 'Class', hero_type: 'Type', level: 'Level', stars: 'Stars',
+    hero_role: 'Role', hero_style: 'Style', combat_power: 'Combat Power', hit_point: 'Hit Point',
+    defence: 'Defence', attack: 'Attack', speed: 'Speed', count: 'Count', unique_key: 'Key'
   }
+
+  def set_unique_key
+    self.unique_key = SecureRandom.hex(10)
+  end
 
   class << self
     def next_hero_to_breakthrough
@@ -49,8 +56,6 @@ class Hero < ApplicationRecord
     end
 
     def to_csv
-      attributes = %w[id name hero_class hero_type level stars hero_role hero_style combat_power hit_point defence attack speed count]
-
       CSV.generate(headers: true) do |csv|
         csv << CSV_HEADERS.values
 

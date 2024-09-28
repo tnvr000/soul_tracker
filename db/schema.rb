@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_27_173539) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_28_170808) do
   create_table "equipment", force: :cascade do |t|
     t.string "name"
     t.integer "equipment_type"
@@ -20,6 +20,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_27_173539) do
     t.integer "level", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "unique_key", null: false
+    t.index ["unique_key"], name: "index_equipment_on_unique_key", unique: true
   end
 
   create_table "heros", force: :cascade do |t|
@@ -38,6 +40,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_27_173539) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "count", default: 1
+    t.string "unique_key", null: false
+    t.index ["unique_key"], name: "index_heros_on_unique_key", unique: true
   end
 
 end
