@@ -3,7 +3,10 @@ class EquipmentsController < ApplicationController
     update_session_filter_params
     assign_filter_instance_variable
 
-    @equipments = Equipment.order(@order_by.to_sym => :desc)
+    @equipments = Equipment.order(equipment_class: :desc)
+      .order(equipment_class_level: :desc)
+      .order(:equipment_style)
+      .order(:equipment_type)
     @equipments = @equipments.where(equipment_type: @equipment_type) if @equipment_type.nonzero?
     @equipments = @equipments.where(equipment_style: @equipment_style) if @equipment_style.nonzero?
     @equipments = @equipments.where(equipment_class: @equipment_class) if @equipment_class.nonzero?
@@ -58,6 +61,15 @@ class EquipmentsController < ApplicationController
     equipment.destroy
 
     redirect_to equipments_path
+  end
+
+  def importer; end
+
+  def import
+    file = File.open(params[:file])
+    Equipment.import(file)
+
+    redirect_to equipments_path, success: 'Equipments imported'
   end
 
   private

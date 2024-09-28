@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   end
   
   resources :equipments do
+    collection do
+      get :importer
+      post :import
+    end
     member do
       post :duplicate
     end

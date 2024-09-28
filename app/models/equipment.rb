@@ -5,6 +5,11 @@ class Equipment < ApplicationRecord
   enum :equipment_type, { weapon: 1, headwear: 2, bodywear: 3, footwear: 4 }
   enum :equipment_class, { normal: 1, advanced: 2, rare: 3, epic: 4, legendary: 5, mythic: 6 }
 
+  HEADERS = { 
+    id: 'Id', name: 'Name', equipment_type: 'Type', equipment_style: 'Style', equipment_class: 'Class',
+    equipment_class_level: 'Class level', level: 'Level'
+  }
+
   class << self
     def valid_equipment_type(equipment_type)
       return 0 unless equipment_type.to_i.in?(equipment_types.values)
@@ -31,14 +36,30 @@ class Equipment < ApplicationRecord
     end
 
     def to_csv
-      attributes = %w[id name equipment_type equipment_style equipment_class equipment_class_level level]
-
       CSV.generate(headers: true) do |csv|
-        csv << attributes
+        csv << HEADERS.values
 
         all.each do |equipment|
-          csv << attributes.map { |attr| equipment.send(attr) }
+          csv << HEADERS.keys.map { |attr| equipment.send(attr) }
         end
+      end
+    end
+
+    def import(file)
+      CSV.foreach(file, headers: true) do |row|
+        equipment = Equipment.find_by(id: row[HEADERS[:id]])
+        equipment = Equipment.new if equipment.blank?
+
+        equipment.assign_attributes(
+          name: row[HEADERS[:name]],
+          equipment_type: row[HEADERS[:equipment_type]],
+          equipment_style: row[HEADERS[:equipment_style]],
+          equipment_class: row[HEADERS[:equipment_class]],
+          equipment_class_level: row[HEADERS[:equipment_class_level]],
+          level: row[HEADERS[:level]],
+        )
+
+        equipment.save
       end
     end
   end
