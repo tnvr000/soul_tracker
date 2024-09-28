@@ -22,9 +22,14 @@
   <div class="col-lg-9">
     <div class="equipment-container-header">
       <h2>Showing <%= @equipments.count %> Equipments</h2>
-      <%= link_to new_equipment_path do %>
-        <i class="bi bi-plus-square-fill"></i>
-      <% end %>
+      <div>
+        <%= link_to equipments_path(format: :csv), data: { turbo_frame: '_top' } do %>
+          <i class="bi bi-box-arrow-up"></i>
+        <% end %>
+        <%= link_to new_equipment_path do %>
+          <i class="bi bi-plus-square-fill"></i>
+        <% end %>
+      </div>
     </div>
     <div class="equipments-container">
       <div class="equipment-header">

@@ -8,6 +8,12 @@ class EquipmentsController < ApplicationController
     @equipments = @equipments.where(equipment_style: @equipment_style) if @equipment_style.nonzero?
     @equipments = @equipments.where(equipment_class: @equipment_class) if @equipment_class.nonzero?
     @equipments = @equipments.where(equipment_class_level: @equipment_class_level) if @equipment_class_level >= 0
+
+    respond_to do |format|
+      format.html
+
+      format.csv { send_data @equipments.to_csv, filename: "equipments_#{Time.now.to_i}.csv" }
+    end
   end
 
   def new

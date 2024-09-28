@@ -10,9 +10,17 @@
     <%= turbo_frame_tag "search_result" do %>
       <div class="hero-header">
         <h2>Showing <%= @heroes.count %> Heroes</h2>
-        <%= link_to new_hero_path, data: { turbo_frame: '_top' } do %>
-          <i class="bi bi-plus-square-fill"></i>
-        <% end %>
+        <div>
+          <%= link_to statistics_heroes_path(format: :csv), data: { turbo_frame: '_top' } do %>
+            <i class="bi bi-box-arrow-up"></i>
+          <% end %>
+          <%= link_to heroes_path, data: { turbo_frame: '_top' } do %>
+            <i class="bi bi-arrow-left-square-fill"></i>
+          <% end %>
+          <%= link_to new_hero_path, data: { turbo_frame: '_top' } do %>
+            <i class="bi bi-plus-square-fill"></i>
+          <% end %>
+        </div>
       </div>
       <div class="heroes-container">
         <div class="hero-container-header">

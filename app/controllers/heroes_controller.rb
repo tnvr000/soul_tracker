@@ -9,6 +9,12 @@ class HeroesController < ApplicationController
     @heroes = @heroes.where(hero_type: @hero_type) if @hero_type.nonzero?
     @heroes = @heroes.where(hero_style: @hero_style) if @hero_style.nonzero?
     @heroes = @heroes.where(hero_role: @hero_role) if @hero_role.nonzero?
+
+    respond_to do |format|
+      format.html
+
+      format.csv { send_data @heroes.to_csv, filename: "epic_heroes_#{Time.now.to_i}.csv" }
+    end
   end
 
   def new
@@ -71,6 +77,12 @@ class HeroesController < ApplicationController
     @hero_type = params[:hero_type].to_i
     @heroes = Hero.where(hero_class: :rare).order(:hero_type)
     @heroes = @heroes.where(hero_type: @hero_type) if @hero_type.nonzero?
+
+    respond_to do |format|
+      format.html
+
+      format.csv { send_data @heroes.to_csv, filename: "rare_heroes_#{Time.now.to_i}.csv"}
+    end
   end
 
   private

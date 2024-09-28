@@ -1,3 +1,5 @@
+require 'csv'
+
 class Hero < ApplicationRecord
   enum :hero_class, { normal: 1, rare: 2, epic: 3 }
   enum :hero_type, { human: 1, horde: 2, elf: 3, undead: 4, light: 5, dark: 6 }
@@ -39,6 +41,18 @@ class Hero < ApplicationRecord
       return 0 unless hero_role.to_i.in?(hero_roles.values)
 
       hero_role.to_i
+    end
+
+    def to_csv
+      attributes = %w[id name hero_class hero_type level stars hero_role hero_style combat_power hit_point defence attack speed count]
+
+      CSV.generate(headers: true) do |csv|
+        csv << attributes
+
+        all.each do |hero|
+          csv << attributes.map { |attr| hero.send(attr) }
+        end
+      end
     end
   end
 end

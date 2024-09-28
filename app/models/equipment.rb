@@ -1,3 +1,5 @@
+require 'csv'
+
 class Equipment < ApplicationRecord
   enum :equipment_style, { strength: 1, agility: 2, intelligence: 3 }
   enum :equipment_type, { weapon: 1, headwear: 2, bodywear: 3, footwear: 4 }
@@ -26,6 +28,18 @@ class Equipment < ApplicationRecord
       return -1 unless equipment_class_level.to_i.in?([0, 1, 2, 3])
 
       equipment_class_level.to_i
+    end
+
+    def to_csv
+      attributes = %w[id name equipment_type equipment_style equipment_class equipment_class_level level]
+
+      CSV.generate(headers: true) do |csv|
+        csv << attributes
+
+        all.each do |equipment|
+          csv << attributes.map { |attr| equipment.send(attr) }
+        end
+      end
     end
   end
 end
