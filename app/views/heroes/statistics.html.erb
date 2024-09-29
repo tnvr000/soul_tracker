@@ -41,6 +41,9 @@
               <%= link_to edit_hero_path(hero), data: { turbo_frame: '_top' } do %>
                 <i class="bi bi-pencil-square"></i>
               <% end %>
+              <%= link_to hero_path(hero), data: { 'turbo-method' => :delete } do %>
+                <i class="bi bi-trash"></i>
+              <% end %>
             </div>
           </div>
         <% end %>

@@ -73,9 +73,15 @@ class HeroesController < ApplicationController
     end
   end
 
+  def destroy
+    hero.destroy
+
+    redirect_to heroes_path, success: 'Hero Deleted'
+  end
+
   def statistics
     @hero_type = params[:hero_type].to_i
-    @heroes = Hero.where(hero_class: :rare).order(:hero_type)
+    @heroes = Hero.where(hero_class: :rare).order(:hero_type).order(:name)
     @heroes = @heroes.where(hero_type: @hero_type) if @hero_type.nonzero?
 
     respond_to do |format|

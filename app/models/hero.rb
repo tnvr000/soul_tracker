@@ -66,7 +66,7 @@ class Hero < ApplicationRecord
 
     def import(file)
       CSV.foreach(file, headers: true) do |row|
-        hero = Hero.find_or_initialize_by(name: row[CSV_HEADERS[:name]])
+        hero = Hero.find_or_initialize_by(unique_key: row[CSV_HEADERS[:unique_key]])
 
         hero.assign_attributes(
           hero_class: row[CSV_HEADERS[:hero_class]],

@@ -39,6 +39,7 @@ class EquipmentsController < ApplicationController
 
   def duplicate
     new_equipment = equipment.dup
+    new_equipment.unique_key = nil
     new_equipment.save
     redirect_to equipments_path
   end
