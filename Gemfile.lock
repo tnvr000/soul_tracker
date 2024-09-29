@@ -101,6 +101,8 @@ GEM
     debug (1.9.2)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    dockerfile-rails (1.6.20)
+      rails (>= 3.0.0)
     dotenv (3.1.4)
     drb (2.2.1)
     error_highlight (0.6.0)
@@ -257,6 +259,7 @@ DEPENDENCIES
   capybara
   cssbundling-rails
   debug
+  dockerfile-rails (>= 1.6)
   dotenv
   error_highlight (>= 0.4.0)
   jbuilder
