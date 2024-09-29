@@ -6,6 +6,8 @@ class Hero < ApplicationRecord
   enum :hero_style, { strength: 1, agility: 2, intelligence: 3 }
   enum :hero_role, { tank: 1, dealer: 2, supporter: 3, healer: 4 }
 
+  validates_uniqueness_of :unique_key
+
   before_create :set_unique_key
 
   CSV_HEADERS = {

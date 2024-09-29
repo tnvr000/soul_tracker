@@ -5,6 +5,8 @@ class Equipment < ApplicationRecord
   enum :equipment_type, { weapon: 1, headwear: 2, bodywear: 3, footwear: 4 }
   enum :equipment_class, { normal: 1, advanced: 2, rare: 3, epic: 4, legendary: 5, mythic: 6 }
 
+  validates_uniqueness_of :unique_key
+
   before_create :set_unique_key
 
   HEADERS = { 

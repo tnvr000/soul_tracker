@@ -84,6 +84,6 @@ test:
 production:
   <<: *default
   url: <%= ENV["SOULS_TRACKER_DATABASE_URL"] %>
-  database: souls_tracker_production
+  database: souls-tracker-production
   username: <%= ENV["SOULS_TRACKER_DATABASE_USERNAME"] %>
   password: <%= ENV["SOULS_TRACKER_DATABASE_PASSWORD"] %>

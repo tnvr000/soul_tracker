@@ -13,43 +13,44 @@
 ActiveRecord::Schema[7.1].define(version: 2024_09_28_170808) do
   create_schema "crdb_internal"
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
   create_enum "crdb_internal_region", ["aws-ap-south-1"]
 
-  create_table "equipment", id: :bigint, default: -> { "unique_rowid()" }, force: :cascade do |t|
+  create_table "equipment", force: :cascade do |t|
     t.string "name"
-    t.bigint "equipment_type"
-    t.bigint "equipment_style"
-    t.bigint "equipment_class"
-    t.bigint "equipment_class_level"
-    t.bigint "level", default: 0
+    t.integer "equipment_type"
+    t.integer "equipment_style"
+    t.integer "equipment_class"
+    t.integer "equipment_class_level"
+    t.integer "level", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "unique_key", null: false
-
-    t.unique_constraint ["unique_key"], name: "index_equipment_on_unique_key"
+    t.index ["unique_key"], name: "index_equipment_on_unique_key"
   end
 
-  create_table "heros", id: :bigint, default: -> { "unique_rowid()" }, force: :cascade do |t|
+  create_table "heros", force: :cascade do |t|
     t.string "name"
-    t.bigint "hero_class"
-    t.bigint "hero_type"
-    t.bigint "level"
-    t.bigint "stars"
-    t.bigint "hero_role"
-    t.bigint "hero_style"
-    t.bigint "combat_power"
-    t.bigint "hit_point"
-    t.bigint "defence"
-    t.bigint "attack"
-    t.bigint "speed"
+    t.integer "hero_class"
+    t.integer "hero_type"
+    t.integer "level"
+    t.integer "stars"
+    t.integer "hero_role"
+    t.integer "hero_style"
+    t.integer "combat_power"
+    t.integer "hit_point"
+    t.integer "defence"
+    t.integer "attack"
+    t.integer "speed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "count", default: 1
+    t.integer "count", default: 1
     t.string "unique_key", null: false
-
-    t.unique_constraint ["unique_key"], name: "index_heros_on_unique_key"
+    t.index ["unique_key"], name: "index_heros_on_unique_key"
   end
 
 end
