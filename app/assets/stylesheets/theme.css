@@ -30,6 +30,20 @@ html, body {
   justify-content: space-between;
 }
 
+.form-container {
+  padding: 30px;
+  width: 50%;
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: var(--secondary-bg-color-1);
+  border: 2px solid var(--secondary-bg-color-2);
+  border-radius: 10px;
+}
+
+.primary-color {
+  color: var(--primary-color);
+}
+
 .filter_container {
   padding: 1px 3px;
   display: flex;
