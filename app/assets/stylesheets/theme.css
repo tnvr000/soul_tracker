@@ -33,11 +33,15 @@ html, body {
 .form-container {
   padding: 30px;
   width: 50%;
-  max-width: 500px;
+  max-width: 550px;
   margin: 0 auto;
   background-color: var(--secondary-bg-color-1);
   border: 2px solid var(--secondary-bg-color-2);
   border-radius: 10px;
+}
+
+.form-container .title {
+  text-align: center;
 }
 
 .primary-color {

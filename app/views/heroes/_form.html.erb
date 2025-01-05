@@ -1,0 +1,28 @@
+<%= bootstrap_form_with(model: hero) do |form| %>
+  <%= form.text_field :name, required: true, label: 'Name' %>
+  <%= form.number_field :count %>
+  <%= form.number_field :combat_power %>
+  <%= form.number_field :attack %>
+  <%= form.number_field :defense %>
+  <%= form.number_field :hit_point %>
+  <%= form.number_field :speed %>
+  <%= form.number_field :level %>
+  <%= form.number_field :stars %>
+  <%= form.select :hero_class, hero_class_form_options %>
+  <%= form.select :hero_type, hero_type_form_options %>
+  <%= form.select :hero_role, hero_role_form_options %>
+  <%= form.select :hero_style, hero_style_form_options %>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="d-grid">
+        <%= link_to 'Back', heroes_path, class: 'btn btn-danger' %>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="d-grid">
+        <%= form.submit 'Save', class: 'btn btn-success' %>
+      </div>
+    </div>
+  </div>
+<% end %>

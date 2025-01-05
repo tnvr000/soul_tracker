@@ -16,8 +16,45 @@ class HeroesController < ApplicationController
     end
   end
 
+  def new
+    @hero = Hero.new
+  end
+
+  def create
+    @hero = Current.user.heroes.build(hero_params)
+
+    respond_to do |format|
+      format.html do
+        if hero.save
+          redirect_to heroes_path, notice: "Hero Created"
+        else
+          flash.now[:alert] = first_error(hero)
+          render :new
+        end
+      end
+    end
+  end
+
   def show
     @hero = set_hero
+  end
+
+  def edit
+    @hero = set_hero
+  end
+
+  def update
+    hero.assign_attributes(hero_params)
+
+    respond_to do |format|
+      format.html do
+        if hero.save
+          redirect_to heroes_path, notice: "Hero Updated"
+        else
+          render :edit, error: first_error(hero)
+        end
+      end
+    end
   end
 
   private
@@ -68,5 +105,9 @@ class HeroesController < ApplicationController
 
   def set_hero
     Current.user.heroes.find(params[:id])
+  end
+
+  def hero_params
+    params.require(:hero).permit(HERO_PARAMS)
   end
 end
