@@ -62,10 +62,6 @@
   text-align: left;
 }
 
-.heroes-container .hero-container .data:last-child {
-  text-align: right;
-}
-
 .heroes-container .hero-container .name > a {
   color: var(--accent-text-color);
   text-decoration: none;

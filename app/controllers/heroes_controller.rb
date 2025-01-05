@@ -31,7 +31,7 @@ class HeroesController < ApplicationController
           flash.now[:alert] = first_error(hero)
           render :new
         end
-      end
+      end # response for html format
     end
   end
 
@@ -51,10 +51,26 @@ class HeroesController < ApplicationController
         if hero.save
           redirect_to heroes_path, notice: "Hero Updated"
         else
-          render :edit, error: first_error(hero)
+          flash.now[:alert] = first_error(hero)
+          render :edit
         end
-      end
+      end # response for html format
     end
+  end
+
+  def destroy
+    hero.destroy
+
+    redirect_to heroes_path, alert: "Hero Deleted"
+  end
+
+  def importer; end
+
+  def import
+    file = File.open(params[:file])
+    Hero.import(file)
+
+    redirect_to heroes_path, alert: "Heroes imported"
   end
 
   private

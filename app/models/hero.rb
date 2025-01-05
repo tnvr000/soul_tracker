@@ -1,3 +1,5 @@
+require "csv"
+
 class Hero < ApplicationRecord
   self.table_name = "heroes"
 
@@ -17,6 +19,8 @@ class Hero < ApplicationRecord
   }
 
   def set_unique_key
+    return if self.unique_key.present?
+
     self.unique_key = SecureRandom.hex(10)
   end
 
@@ -66,9 +70,11 @@ class Hero < ApplicationRecord
 
     def import(file)
       CSV.foreach(file, headers: true) do |row|
-        hero = Hero.find_or_initialize_by(unique_key: row[CSV_HEADERS[:unique_key]])
+        hero = Current.user.heroes.find_or_initialize_by(unique_key: row[CSV_HEADERS[:unique_key]])
 
-        hero.assign_attributes(hero_class: row[CSV_HEADERS[:hero_class]],
+        hero.assign_attributes(
+          name: row[CSV_HEADERS[:name]],
+          hero_class: row[CSV_HEADERS[:hero_class]],
           hero_type: row[CSV_HEADERS[:hero_type]],
           level: row[CSV_HEADERS[:level]],
           stars: row[CSV_HEADERS[:stars]],
