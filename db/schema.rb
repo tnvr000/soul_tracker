@@ -10,7 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_01_144213) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_01_172122) do
+  create_table "heroes", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.integer "hero_class"
+    t.integer "hero_type"
+    t.integer "hero_role"
+    t.integer "hero_style"
+    t.integer "level"
+    t.integer "stars"
+    t.integer "combat_power"
+    t.integer "hit_point"
+    t.integer "defense"
+    t.integer "attack"
+    t.integer "speed"
+    t.integer "count", default: 1
+    t.string "unique_key", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["unique_key"], name: "index_heroes_on_unique_key", unique: true
+    t.index ["user_id"], name: "index_heroes_on_user_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "ip_address"
