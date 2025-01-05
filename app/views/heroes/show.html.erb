@@ -1,0 +1,66 @@
+<div class="hero-stats-container">
+  <h1 class="name"><%= @hero.name %></h1>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="d-grid">
+        <span class="btn btn-primary"><%= @hero.hero_role %></span>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="d-grid">
+        <span class="btn btn-primary"><%= @hero.hero_style %></span>
+      </div>
+    </div>
+  </div> <!-- Hero Characteristics Container -->
+
+  <div class="stats">
+    <div class="stat">
+      <b>Combat Power</b>
+      <span><%= @hero.combat_power %></span>
+    </div>
+
+    <div class="stat">
+      <b>Attack</b>
+      <span><%= @hero.attack %></span>
+    </div>
+
+    <div class="stat">
+      <b>Defense</b>
+      <span><%= @hero.defense %></span>
+    </div>
+
+    <div class="stat">
+      <b>Hit Point</b>
+      <span><%= @hero.hit_point %></span>
+    </div>
+
+    <div class="stat">
+      <b>Speed</b>
+      <span><%= @hero.speed %></span>
+    </div>
+
+    <div class="stat">
+      <b>Level</b>
+      <span><%= @hero.level %></span>
+    </div>
+
+    <div class="stat last">
+      <b>Stars</b>
+      <span><%= @hero.stars %></span>
+    </div>
+  </div><!-- Stats Container -->
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="d-grid">
+        <%= link_to "Back", heroes_path, class: "btn btn-danger" %>
+      </div>
+    </div> <!-- Back Link Container -->
+    <div class="col-lg-6">
+      <div class="d-grid">
+        <%= link_to "Back", heroes_path, class: "btn btn-danger" %>
+      </div>
+    </div> <!-- Edit Link Container -->
+  </div> <!-- Links Container -->
+</div>

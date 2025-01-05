@@ -16,6 +16,10 @@ class HeroesController < ApplicationController
     end
   end
 
+  def show
+    @hero = set_hero
+  end
+
   private
 
   def update_session_filter_params
@@ -56,5 +60,13 @@ class HeroesController < ApplicationController
     @hero_type = session["hero"]["hero_type"].to_i
     @hero_style = session["hero"]["hero_style"].to_i
     @hero_role = session["hero"]["hero_role"].to_i
+  end
+
+  def hero
+    @hero ||= set_hero
+  end
+
+  def set_hero
+    Current.user.heroes.find(params[:id])
   end
 end

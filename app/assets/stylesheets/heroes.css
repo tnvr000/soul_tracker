@@ -1,3 +1,4 @@
+/* #region Index */
 .hero-header {
   display: flex;
   justify-content: space-between;
@@ -76,3 +77,35 @@
   text-decoration: none;
   font-weight: bolder;
 }
+/* #endregion */
+
+/* #region Show */
+.hero-stats-container {
+  padding: 30px;
+  width: 50%;
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: var(--secondary-bg-color-1);
+  border: 2px solid var(--secondary-bg-color-2);
+  border-radius: 10px;
+}
+
+.hero-stats-container .name {
+  text-align: center;
+}
+
+.hero-stats-container .stats {
+  padding: 5px 0;
+}
+
+.hero-stats-container .stat {
+  display: flex;
+  padding: 5px 0;
+  justify-content: space-between;
+  border-bottom: 1px solid white;
+}
+
+.hero-stats-container .stat:last-child {
+  border-bottom: 0px solid white;
+}
+/* #endregion */
