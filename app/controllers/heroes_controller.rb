@@ -64,6 +64,18 @@ class HeroesController < ApplicationController
     redirect_to heroes_path, alert: "Hero Deleted"
   end
 
+  def statistics
+    @hero_type = params[:hero_type].to_i
+    @heroes = Hero.where(hero_class: :rare).order(:hero_type).order(:name)
+    @heroes = @heroes.where(hero_type: @hero_type) if @hero_type.nonzero?
+
+    respond_to do |format|
+      format.html
+
+      format.csv.where(hero_type: @hero_type) if @hero_type.nonzero?
+    end
+  end
+
   def importer; end
 
   def import

@@ -50,14 +50,7 @@
           <div class="data">Hit Point</div>
         </div>
         <% @heroes.each do |hero| %>
-          <div class="hero-container">
-            <div class="data name"><%= link_to hero.name, hero_path(hero), data: { turbo_frame: "_top" } %></div>
-            <div class="data"><%= hero.hero_type %></div>
-            <div class="data"><%= hero.combat_power %></div>
-            <div class="data"><%= hero.attack %></div>
-            <div class="data"><%= hero.defense %></div>
-            <div class="data"><%= hero.hit_point %></div>
-          </div>
+          <%= render partial: 'epic_hero', locals: { hero: hero } %>
         <% end %>
       </div>
     <% end %>
