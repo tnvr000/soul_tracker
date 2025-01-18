@@ -1,4 +1,4 @@
-<div class="hero-container">
+<div class="hero-container stripes <%= hero.hero_type %>">
   <div class="data name"><%= link_to hero.name, hero_path(hero), data: { turbo_frame: "_top" } %></div>
   <div class="data"><%= hero.hero_type %></div>
   <div class="data"><%= hero.combat_power %></div>

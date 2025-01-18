@@ -43,20 +43,12 @@
   padding: 5px 10px;
 }
 
-.heroes-container turbo-frame:nth-child(odd) .hero-container {
-  background-color: var(--secondary-bg-color-1);
-}
-
-.heroes-container turbo-frame:nth-child(even) .hero-container {
-  background-color: var(--secondary-bg-color-2);
-}
-
 .heroes-container > .hero-container:nth-child(odd) {
-  background-color: var(--secondary-bg-color-1);
+  --stripe-angle: var(--stripe-odd-angle);
 }
 
 .heroes-container > .hero-container:nth-child(even) {
-  background-color: var(--secondary-bg-color-2);
+  --stripe-angle: var(--stripe-even-angle);
 }
 
 .heroes-container > .hero-container:last-child {
@@ -64,15 +56,45 @@
 }
 
 .heroes-container turbo-frame:nth-child(odd) .hero-container {
-  background-color: var(--secondary-bg-color-1);
+  --stripe-angle: var(--stripe-odd-angle);
 }
 
 .heroes-container turbo-frame:nth-child(even) .hero-container {
-  background-color: var(--secondary-bg-color-2);
+  --stripe-angle: var(--stripe-even-angle);
 }
 
 .heroes-container turbo-frame:last-child .hero-container {
   border-radius: 0 0 10px 10px;
+}
+
+/* hero stripes */
+.human {
+  --stripe-color: var(--hero-human);
+}
+.horde {
+  --stripe-color: var(--hero-horde);
+}
+.elf {
+  --stripe-color: var(--hero-elf);
+}
+.undead {
+  --stripe-color: var(--hero-undead);
+}
+.light {
+  --stripe-color: var(--hero-light);
+}
+.dark {
+  --stripe-color: var(--hero-dark);
+}
+
+.stripes {
+  background: repeating-linear-gradient(
+    var(--stripe-angle),
+    var(--stripe-color),
+    var(--stripe-color) 3px,
+    var(--hero-transparent) 3px,
+    var(--hero-transparent) 9px
+  )
 }
 
 /* Hero Data */
