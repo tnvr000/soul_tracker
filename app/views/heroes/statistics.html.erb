@@ -4,6 +4,8 @@
   <div class="col-lg-3">
     <%= form_with(url: statistics_heroes_path, method: :get, class: 'row', data: { controller: "search-form", action: "change->search-form#submit", turbo_frame: "search_result", turbo_action: "advance" }) do |form| %>
       <%= render partial: 'shared/filter_options', locals: { name: :hero_type, options: hero_type_filter_options, form: form } %>
+      <div class="p-lg-3"></div>
+      <%= render partial: 'shared/filter_options', locals: { name: :hero_class, options: hero_class_filter_options, form: form } %>
     <% end %>
   </div>
   <div class="col-lg-9">

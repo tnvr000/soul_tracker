@@ -60,16 +60,16 @@ html, body {
 .primary-color {
   color: var(--primary-color);
 }
-
+/* filter options */
 .filter_container {
-  padding: 1px 3px;
+  padding: 5px 0;
   display: flex;
   flex-direction: column;
   gap: 5px
 }
-
+/* custom checkbox */
 .custom_checkbox {
-  font-size: 1em;
+  font-size: 0.95em;
   font-weight: 600;
 }
 
@@ -85,9 +85,9 @@ html, body {
 .custom_checkbox label {
   border: 1px solid var(--primary-color);
   border-radius: 10px;
-  min-width: 135px;
+  min-width: 105px;
   width: 100%;
-  padding: 3px 7px;
+  padding: 2px 3px;
   text-align: center;
 }
 

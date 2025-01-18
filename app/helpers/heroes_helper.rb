@@ -23,13 +23,6 @@ module HeroesHelper
       .map { |hero_style, _index| [ hero_style.to_s.titlecase, hero_style.to_s ] }
   end
 
-  def hero_class_options
-    Hero
-      .hero_classes
-      .map { |hero_class, value| [ hero_class.to_s.titlecase, value ] }
-      .unshift([ "All Classes", 0 ])
-  end
-
   def hero_type_filter_options
     Hero
       .hero_types
@@ -59,5 +52,12 @@ module HeroesHelper
       [ "Attack", "attack", @order_by == "attack" ],
       [ "Speed", "speed", @order_by == "speed" ]
     ]
+  end
+
+  def hero_class_filter_options
+    Hero
+      .hero_classes
+      .map { |hero_class, value| [ hero_class.to_s.titlecase, value, @hero_class == value  ] }
+      .unshift([ "All Classes", 0, @hero_class.to_i.zero? ])
   end
 end

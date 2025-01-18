@@ -65,14 +65,17 @@ class HeroesController < ApplicationController
   end
 
   def statistics
-    @hero_type = params[:hero_type].to_i
-    @heroes = Hero.where(hero_class: :rare).order(:hero_type).order(:name)
+    update_statistics_session_filter_params
+    assign_statistics_filter_instance_variable
+
+    @heroes = Hero.order(:hero_type).order(:name)
     @heroes = @heroes.where(hero_type: @hero_type) if @hero_type.nonzero?
+    @heroes = @heroes.where(hero_class: @hero_class) if @hero_class.nonzero?
 
     respond_to do |format|
       format.html
 
-      format.csv { send_data @heroes.to_csv, filename: "rare_heroes_#{Time.now.to_i}.csv" }
+      format.csv { send_data @heroes.to_csv, filename: "heroes_statistics_#{Time.now.to_i}.csv" }
     end
   end
 
@@ -100,6 +103,19 @@ class HeroesController < ApplicationController
 
   private
 
+  def hero
+    @hero ||= set_hero
+  end
+
+  def set_hero
+    Current.user.heroes.find(params[:id])
+  end
+
+  def hero_params
+    params.require(:hero).permit(HERO_PARAMS)
+  end
+
+  # load and update sessions for index action
   def update_session_filter_params
     session["hero"] ||= {}
 
@@ -140,15 +156,28 @@ class HeroesController < ApplicationController
     @hero_role = session["hero"]["hero_role"].to_i
   end
 
-  def hero
-    @hero ||= set_hero
+  # load and update sessions for statistics action
+  def update_statistics_session_filter_params
+    session["hero_statistics"] ||= {}
+
+    update_statistics_hero_type_session_filter_params
+    update_statistics_hero_class_session_filter_params
   end
 
-  def set_hero
-    Current.user.heroes.find(params[:id])
+  def update_statistics_hero_type_session_filter_params
+    return if params[:hero_type].blank?
+
+    session["hero_statistics"]["hero_type"] = Hero.valid_hero_type(params[:hero_type])
   end
 
-  def hero_params
-    params.require(:hero).permit(HERO_PARAMS)
+  def update_statistics_hero_class_session_filter_params
+    return if params[:hero_class].blank?
+
+    session["hero_statistics"]["hero_class"] = Hero.valid_hero_class(params[:hero_class])
+  end
+
+  def assign_statistics_filter_instance_variable
+    @hero_type = session["hero_statistics"]["hero_type"].to_i
+    @hero_class = session["hero_statistics"]["hero_class"].to_i
   end
 end
