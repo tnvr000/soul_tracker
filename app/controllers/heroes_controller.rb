@@ -72,7 +72,20 @@ class HeroesController < ApplicationController
     respond_to do |format|
       format.html
 
-      format.csv.where(hero_type: @hero_type) if @hero_type.nonzero?
+      format.csv { send_data @heroes.to_csv, filename: "rare_heroes_#{Time.now.to_i}.csv" }
+    end
+  end
+
+  def change_count
+    case params[:direction]
+    when "decrease"
+      hero.update(count: hero.count - 1)
+    when "increase"
+      hero.update(count: hero.count + 1)
+    end
+
+    respond_to do |format|
+      format.turbo_stream
     end
   end
 

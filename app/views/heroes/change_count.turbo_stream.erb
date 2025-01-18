@@ -1,0 +1,3 @@
+<%= turbo_stream.replace dom_id(@hero) do %>
+  <%= render partial: 'rare_hero', locals: { hero: @hero } %>
+<% end %>

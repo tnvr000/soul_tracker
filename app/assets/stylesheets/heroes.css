@@ -12,6 +12,7 @@
   font-size: 2em;
 }
 
+/* Heroes Container */
 .heroes-container {
   display: flex;
   flex-direction: column;
@@ -34,6 +35,7 @@
   font-weight: bolder;
 }
 
+/* Hero Container */
 .heroes-container .hero-container {
   display: flex;
   flex-direction: row;
@@ -41,37 +43,73 @@
   padding: 5px 10px;
 }
 
-.heroes-container .hero-container:nth-child(odd) {
+.heroes-container turbo-frame:nth-child(odd) .hero-container {
   background-color: var(--secondary-bg-color-1);
 }
 
-.heroes-container .hero-container:nth-child(even) {
+.heroes-container turbo-frame:nth-child(even) .hero-container {
   background-color: var(--secondary-bg-color-2);
 }
 
-.heroes-container .hero-container:last-child {
+.heroes-container > .hero-container:nth-child(odd) {
+  background-color: var(--secondary-bg-color-1);
+}
+
+.heroes-container > .hero-container:nth-child(even) {
+  background-color: var(--secondary-bg-color-2);
+}
+
+.heroes-container > .hero-container:last-child {
   border-radius: 0 0 10px 10px;
 }
 
-.heroes-container .hero-container .data {
+.heroes-container turbo-frame:nth-child(odd) .hero-container {
+  background-color: var(--secondary-bg-color-1);
+}
+
+.heroes-container turbo-frame:nth-child(even) .hero-container {
+  background-color: var(--secondary-bg-color-2);
+}
+
+.heroes-container turbo-frame:last-child .hero-container {
+  border-radius: 0 0 10px 10px;
+}
+
+/* Hero Data */
+.hero-container .data {
   width: 100%;
   text-align: center;
 }
 
-.heroes-container .hero-container .data:first-child {
+.hero-container .data:first-child {
   text-align: left;
 }
 
-.heroes-container .hero-container .name > a {
+.hero-container .name a {
   color: var(--accent-text-color);
   text-decoration: none;
   font-weight: bolder;
 }
 
-.heroes-container .hero-container .action > a {
-  color: var(--accent-text-color);
+.hero-container .change-count-container {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-container .change-count-container .change-count {
+  display: none
+}
+
+.hero-container:hover .change-count-container .change-count {
+  display: block;
+  color:  var(--primary-color);
   text-decoration: none;
   font-weight: bolder;
+}
+
+.hero-container .change-count-container .count {
+  min-width: 45px;
+  text-align: center;
 }
 /* #endregion */
 

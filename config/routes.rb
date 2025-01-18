@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
   resources :heroes do
+    member do
+      patch :change_count
+    end
     collection do
       get :statistics
       get :importer
