@@ -60,4 +60,10 @@ module HeroesHelper
       .map { |hero_class, value| [ hero_class.to_s.titlecase, value, @hero_class == value  ] }
       .unshift([ "All Classes", 0, @hero_class.to_i.zero? ])
   end
+
+  def heroes_remaining_to_reach_8_stars(hero)
+    HEROES_REQUIRED_FOR_8_STARS_HERO - (
+      (hero.count - hero.count_offset.to_i) % HEROES_REQUIRED_FOR_8_STARS_HERO
+    )
+  end
 end

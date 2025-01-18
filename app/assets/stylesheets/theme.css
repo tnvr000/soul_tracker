@@ -15,12 +15,12 @@
   --accent-text-color: #00e2bf;
 
   /* heroes color */
-  --hero-human: #1e72e766;
-  --hero-horde: #cc220066;
-  --hero-elf: #55991166;
-  --hero-undead: #00abab66;
-  --hero-light: #e4a13666;
-  --hero-dark: #9f47ff66;
+  --hero-human: #1e72e777;
+  --hero-horde: #cc220077;
+  --hero-elf: #68c40d77;
+  --hero-undead: #00e4e477;
+  --hero-light: #e4a13677;
+  --hero-dark: #9f47ff77;
   --hero-transparent: #ffffff00;
   --stripe-color: var(--hero-transparent);
   --stripe-even-angle: 45deg;

@@ -11,6 +11,7 @@ class Hero < ApplicationRecord
   belongs_to :user, optional: true
   validates_uniqueness_of :unique_key
   before_create :set_unique_key
+  before_save -> { self.count_offset %= HEROES_REQUIRED_FOR_8_STARS_HERO }
 
   CSV_HEADERS = {
     name: "Name", hero_class: "Class", hero_type: "Type", level: "Level", stars: "Stars",

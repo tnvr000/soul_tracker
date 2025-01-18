@@ -68,7 +68,7 @@ class HeroesController < ApplicationController
     update_statistics_session_filter_params
     assign_statistics_filter_instance_variable
 
-    @heroes = Hero.order(:hero_type).order(:name)
+    @heroes = Hero.order(count: :desc)
     @heroes = @heroes.where(hero_type: @hero_type) if @hero_type.nonzero?
     @heroes = @heroes.where(hero_class: @hero_class) if @hero_class.nonzero?
 

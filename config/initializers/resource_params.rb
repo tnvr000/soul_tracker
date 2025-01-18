@@ -14,4 +14,5 @@ HERO_PARAMS = %I[
   hero_type
   hero_style
   count
+  count_offset
 ].freeze
