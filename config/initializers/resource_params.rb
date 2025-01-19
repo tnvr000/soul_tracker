@@ -16,3 +16,12 @@ HERO_PARAMS = %I[
   count
   count_offset
 ].freeze
+
+EQUIPMENT_PARAMS = %I[
+  name
+  equipment_type
+  equipment_style
+  equipment_class
+  equipment_class_level
+  level
+].freeze

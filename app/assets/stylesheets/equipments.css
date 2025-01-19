@@ -116,3 +116,33 @@
   text-align: center;
 }
 /* #endregion */
+
+/* @region Show */
+.equipment-stats-container {
+  padding: 30px;
+  width: 50%;
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: var(--secondary-bg-color-1);
+  border: 2px solid var(--secondary-bg-color-2);
+  border-radius: 10px;
+}
+
+.equipment-stats-container .name {
+  text-align: center;
+}
+
+.equipment-stats-container .stats {
+  padding: 5px 0;
+}
+
+.equipment-stats-container .stat {
+  display: flex;
+  padding: 5px 0;
+  justify-content: space-between;
+  border-bottom: 1px solid white;
+}
+
+.equipment-stats-container .stat:last-child {
+  border-bottom: 0px solid white;
+}

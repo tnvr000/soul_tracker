@@ -1,6 +1,6 @@
 <%= turbo_frame_tag equipment do %>
   <div class="equipment-container">
-    <div class="data name"><%= link_to equipment.name, equipment_path(equipment) %></div>
+    <div class="data name"><%= link_to equipment.name, equipment_path(equipment), data: { turbo_frame: "_top" } %></div>
     <div class="data"><%= equipment.equipment_type %></div>
     <div class="data"><%= equipment.equipment_style %></div>
     <div class="data"><%= equipment_class(equipment) %></div>

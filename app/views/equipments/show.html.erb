@@ -1,0 +1,52 @@
+<div class="equipment-stats-container">
+  <h1 class="name"><%= @equipment.name %></h1>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="d-grid">
+        <span class="btn btn-primary"><%= @equipment.equipment_style.to_s.titlecase %></span>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="d-grid">
+        <span class="btn btn-primary"><%= @equipment.equipment_type.to_s.titlecase %></span>
+      </div>
+    </div>
+  </div> <!-- Equipment Characteristics Container -->
+
+  <div class="stats">
+    <div class="stat">
+      <b>Class</b>
+      <span><%= @equipment.equipment_class %></span>
+    </div>
+
+    <div class="stat">
+      <b>Class Level</b>
+      <span><%= @equipment.equipment_class_level %></span>
+    </div>
+
+    <div class="stat">
+      <b>Level</b>
+      <span><%= @equipment.level %></span>
+    </div>
+  </div> <!-- Stats Container -->
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="d-grid">
+        <%= link_to "Delete", equipment_path(@equipment), class: "btn btn-danger", data: { turbo_method: :delete} %>
+      </div>
+    </div> <!-- Back Link Container -->
+    <div class="col-lg-6">
+      <div class="d-grid">
+        <%= link_to "Edit", edit_equipment_path(@equipment), class: "btn btn-primary" %>
+      </div>
+    </div> <!-- Edit Link Container -->
+    <div class="mt-3"></div>
+    <div class="col-lg-12">
+      <div class="d-grid">
+        <%= link_to "Back", equipments_path, class: "btn btn-warning" %>
+      </div>
+    </div>
+  </div>
+</div>

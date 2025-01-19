@@ -19,6 +19,48 @@ class EquipmentsController < ApplicationController
     end
   end
 
+  def new
+    @equipment = Equipment.new
+  end
+
+  def create
+    @equipment = Current.user.equipments.build(equipment_params)
+
+    respond_to do |format|
+      format.html do
+        if equipment.save
+          redirect_to equipments_path, notice: "Equipment Created"
+        else
+          flash.now[:alert] = first_error(equipment)
+          render :new
+        end
+      end # response for html format
+    end
+  end
+
+  def show
+    @equipment = set_equipment
+  end
+
+  def edit
+    @equipment = set_equipment
+  end
+
+  def update
+    equipment.assign_attributes(equipment_params)
+
+    respond_to do |format|
+      format.html do
+        if equipment.save
+          redirect_to equipments_path, notice: "Equipment Update"
+        else
+          flash.now[:alert] = first_error(equipment)
+          render :edit
+        end
+      end # response for html format
+    end
+  end
+
   def duplicate
     new_equipment = equipment.dup
     new_equipment.unique_key = nil
@@ -41,6 +83,10 @@ class EquipmentsController < ApplicationController
 
   def set_equipment
     Current.user.equipments.find(params[:id])
+  end
+
+  def equipment_params
+    params.require(:equipment).permit(EQUIPMENT_PARAMS)
   end
 
   # load and update sessions for index action
