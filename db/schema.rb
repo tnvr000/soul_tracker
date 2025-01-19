@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_18_142241) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_19_112745) do
+  create_table "equipments", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.integer "equipment_type"
+    t.integer "equipment_style"
+    t.integer "equipment_class"
+    t.integer "equipment_class_level"
+    t.integer "level", default: 0
+    t.string "unique_key", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["unique_key"], name: "index_equipments_on_unique_key"
+    t.index ["user_id"], name: "index_equipments_on_user_id"
+  end
+
   create_table "heroes", force: :cascade do |t|
     t.integer "user_id"
     t.string "name"

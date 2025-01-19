@@ -12,7 +12,7 @@ class HeroesController < ApplicationController
     respond_to do |format|
       format.html
 
-      format.csv { send_data @heroes.to_csv, filename: "epic_heroes_#{Time.now.to_i}.csv" }
+      format.csv { send_data @heroes.to_csv, filename: "heroes_battle_stats_#{Time.now.to_i}.csv" }
     end
   end
 
