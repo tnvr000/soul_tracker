@@ -113,23 +113,23 @@
   font-weight: bolder;
 }
 
-.hero-container .change-count-container {
+.hero-container .adjust-stat-container {
   display: flex;
   justify-content: center;
 }
 
-.hero-container .change-count-container .change-count {
+.hero-container .adjust-stat-container .adjust-stat {
   display: none
 }
 
-.hero-container:hover .change-count-container .change-count {
+.hero-container:hover .adjust-stat-container .adjust-stat {
   display: block;
   color:  var(--primary-color);
   text-decoration: none;
   font-weight: bolder;
 }
 
-.hero-container .change-count-container .count {
+.hero-container .adjust-stat-container .stat {
   min-width: 45px;
   text-align: center;
 }

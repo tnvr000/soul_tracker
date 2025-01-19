@@ -35,7 +35,7 @@
           <div class="data">Count</div>
         </div>
         <% @heroes.each do |hero| %>
-          <%= render partial: 'rare_hero', locals: { hero: hero } %>
+          <%= render partial: 'frequency_stats', locals: { hero: hero } %>
         <% end %>
       </div>
     <% end %>

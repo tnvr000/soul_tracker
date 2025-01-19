@@ -79,13 +79,9 @@ class HeroesController < ApplicationController
     end
   end
 
-  def change_count
-    case params[:direction]
-    when "decrease"
-      hero.update(count: hero.count - 1)
-    when "increase"
-      hero.update(count: hero.count + 1)
-    end
+  def adjust_stat
+    adjust_stat_of(adjustable_attribute)
+    @adjusted_partial = set_adjusted_partial
 
     respond_to do |format|
       format.turbo_stream
@@ -179,5 +175,32 @@ class HeroesController < ApplicationController
   def assign_statistics_filter_instance_variable
     @hero_type = session["hero_statistics"]["hero_type"].to_i
     @hero_class = session["hero_statistics"]["hero_class"].to_i
+  end
+
+  # adjust stats
+  def adjustable_attribute
+    return nil unless [ "stars", "count" ].include?(params[:attribute])
+
+    params[:attribute].downcase
+  end
+
+  def adjust_stat_of(attribute)
+    return if attribute.blank?
+
+    case params[:direction]
+    when "increment"
+      hero.update(attribute => hero[attribute] + 1)
+    when "decrement"
+      hero.update(attribute => hero[attribute] - 1)
+    end
+  end
+
+  def set_adjusted_partial
+    case adjustable_attribute
+    when "stars"
+      "battle_stats"
+    when "count"
+      "frequency_stats"
+    end
   end
 end

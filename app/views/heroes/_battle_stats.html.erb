@@ -1,0 +1,19 @@
+<%= turbo_frame_tag hero do %>
+  <div class="hero-container stripes <%= hero.hero_type %>">
+    <div class="data name"><%= link_to hero.name, hero_path(hero), data: { turbo_frame: "_top" } %></div>
+    <div class="data adjust-stat-container">
+      <%= link_to adjust_stat_hero_path(hero, direction: :decrement, attribute: :stars), class: 'adjust-stat', data: { turbo_method: :patch, turbo_stream: true} do %>
+        <i class="bi bi-chevron-down"></i>
+      <% end %>
+      <span class="stat"><%= hero.stars %></span>
+      <%= link_to adjust_stat_hero_path(hero, direction: :increment, attribute: :stars), class: 'adjust-stat', data: { turbo_method: :patch, turbo_stream: true} do %>
+        <i class="bi bi-chevron-up"></i>
+      <% end %>
+    </div>
+    <div class="data"><%= hero.hero_type.titlecase %></div>
+    <div class="data"><%= hero.combat_power %></div>
+    <div class="data"><%= hero.attack %></div>
+    <div class="data"><%= hero.defense %></div>
+    <div class="data"><%= hero.hit_point %></div>
+  </div>
+<% end %>

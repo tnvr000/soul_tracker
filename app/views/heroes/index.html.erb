@@ -43,6 +43,7 @@
       <div class="heroes-container">
         <div class="hero-container-header">
           <div class="data">Name</div>
+          <div class="data">Stars</div>
           <div class="data">Type</div>
           <div class="data">Combat Power</div>
           <div class="data">Attack</div>
@@ -50,7 +51,7 @@
           <div class="data">Hit Point</div>
         </div>
         <% @heroes.each do |hero| %>
-          <%= render partial: 'epic_hero', locals: { hero: hero } %>
+          <%= render partial: 'battle_stats', locals: { hero: hero } %>
         <% end %>
       </div>
     <% end %>
