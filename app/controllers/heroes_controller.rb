@@ -81,6 +81,7 @@ class HeroesController < ApplicationController
 
   def adjust_stat
     adjust_stat_of(adjustable_attribute)
+    hero.reload
     @adjusted_partial = set_adjusted_partial
 
     respond_to do |format|

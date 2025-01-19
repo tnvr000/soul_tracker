@@ -9,6 +9,11 @@ class Hero < ApplicationRecord
   enum :hero_role, { tank: 1, dealer: 2, supporter: 3, healer: 4 }
 
   belongs_to :user, optional: true
+
+  validates :stars, comparison: {
+    greater_than_or_equal_to: MINIMUM_NUMBER_OF_STARS,
+    less_than_or_equal_to: MAXIMUM_NUMBER_OF_STARS
+  }
   validates_uniqueness_of :unique_key
   before_create :set_unique_key
   before_save -> { self.count_offset %= HEROES_REQUIRED_FOR_8_STARS_HERO }

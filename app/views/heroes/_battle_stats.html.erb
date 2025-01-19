@@ -1,12 +1,21 @@
 <%= turbo_frame_tag hero do %>
   <div class="hero-container stripes <%= hero.hero_type %>">
-    <div class="data name"><%= link_to hero.name, hero_path(hero), data: { turbo_frame: "_top" } %></div>
+    <div class="data name">
+      <%= link_to hero.name, hero_path(hero), data: { turbo_frame: "_top" } %>
+      <span>Lv. <%= hero.level %></span>
+    </div>
     <div class="data adjust-stat-container">
-      <%= link_to adjust_stat_hero_path(hero, direction: :decrement, attribute: :stars), class: 'adjust-stat', data: { turbo_method: :patch, turbo_stream: true} do %>
+      <%= link_to adjust_stat_hero_path(hero, direction: :decrement, attribute: :stars),
+        class: 'adjust-stat',
+        data: { turbo_method: :patch, turbo_stream: true} do
+      %>
         <i class="bi bi-chevron-down"></i>
       <% end %>
-      <span class="stat"><%= hero.stars %></span>
-      <%= link_to adjust_stat_hero_path(hero, direction: :increment, attribute: :stars), class: 'adjust-stat', data: { turbo_method: :patch, turbo_stream: true} do %>
+      <%= render partial: 'hero_stars', locals: { hero: hero } %>
+      <%= link_to adjust_stat_hero_path(hero, direction: :increment, attribute: :stars),
+        class: 'adjust-stat',
+        data: { turbo_method: :patch, turbo_stream: true} do
+      %>
         <i class="bi bi-chevron-up"></i>
       <% end %>
     </div>

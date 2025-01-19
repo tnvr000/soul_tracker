@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  --primary-color: #FFD700;
+  --primary-color: #ffd700;
   --secondary-color: #00e2bf;
 
   --primary-table-color: #fffbe8;
@@ -26,6 +26,13 @@
   --stripe-even-angle: 45deg;
   --stripe-odd-angle: 135deg;
   --stripe-angle: var(--stripe-odd-angle);
+
+  /* Hero Stars colors */
+  --hero-silver: #c0c0c0;
+  --hero-gold: #ffd700;
+  --hero-ruby: #e0115f;
+  --hero-sapphire: #ff00fb;
+  --hero-star-color: var(--hero-silver);
 }
 
 html, body {

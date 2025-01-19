@@ -1,4 +1,5 @@
 module HeroesHelper
+  # form
   def hero_class_form_options
     Hero
       .hero_classes
@@ -23,6 +24,7 @@ module HeroesHelper
       .map { |hero_style, _index| [ hero_style.to_s.titlecase, hero_style.to_s ] }
   end
 
+  # filter
   def hero_type_filter_options
     Hero
       .hero_types
@@ -61,6 +63,25 @@ module HeroesHelper
       .unshift([ "All Classes", 0, @hero_class.to_i.zero? ])
   end
 
+  # index
+  def number_of_stars(hero)
+    result = hero.stars % MAXIMUM_NUMBER_OF_VISIBLE_STARS
+    return MAXIMUM_NUMBER_OF_VISIBLE_STARS if result.zero?
+
+    result
+  end
+
+  def hero_star_class(hero)
+    star_level = (hero.stars - 1) / MAXIMUM_NUMBER_OF_VISIBLE_STARS
+    {
+      0 => "silver",
+      1 => "gold",
+      2 => "ruby",
+      3 => "sapphire"
+    }[star_level]
+  end
+
+  # statistics
   def heroes_remaining_to_reach_8_stars(hero)
     HEROES_REQUIRED_FOR_8_STARS_HERO - (
       (hero.count - hero.count_offset.to_i) % HEROES_REQUIRED_FOR_8_STARS_HERO

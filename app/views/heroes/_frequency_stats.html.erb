@@ -4,11 +4,17 @@
     <div class="data"><%= hero.hero_type.titlecase %></div>
     <div class="data"><%= heroes_remaining_to_reach_8_stars(hero) %></div>
     <div class="data adjust-stat-container">
-      <%= link_to adjust_stat_hero_path(hero, direction: :decrement, attribute: :count), class: 'adjust-stat', data: { turbo_method: :patch, turbo_stream: true } do %>
+      <%= link_to adjust_stat_hero_path(hero, direction: :decrement, attribute: :count),
+        class: 'adjust-stat',
+        data: { turbo_method: :patch, turbo_stream: true } do
+      %>
         <i class="bi bi-chevron-down"></i>
       <% end %>
       <span class="stat"><%= hero.count %></span>
-      <%= link_to adjust_stat_hero_path(hero, direction: :increment, attribute: :count), class: 'adjust-stat', data: { turbo_method: :patch, turbo_stream: true } do %>
+      <%= link_to adjust_stat_hero_path(hero, direction: :increment, attribute: :count),
+        class: 'adjust-stat',
+        data: { turbo_method: :patch, turbo_stream: true } do
+      %>
         <i class="bi bi-chevron-up"></i>
       <% end %>
     </div>
