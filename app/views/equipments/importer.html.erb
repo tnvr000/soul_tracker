@@ -1,18 +1,18 @@
 <div class="form-container">
-  <h1 class="title">Import Heroes</h1>
+  <h1 class="title">Import Equipments</h1>
 
-  <%= bootstrap_form_with(url: import_heroes_path, method: :post) do |form| %>
+  <%= bootstrap_form_with(url: import_equipments_path, method: :post) do |form| %>
     <%= form.file_field :file, hide_label: true %>
 
     <div class="row">
       <div class="col-lg-6">
         <div class="d-grid">
-          <%= link_to 'Back', heroes_path, class: 'btn btn-warning' %>
+          <%= link_to "Back", equipments_path, class: "btn btn-warning" %>
         </div>
       </div>
       <div class="col-lg-6">
         <div class="d-grid">
-          <%= form.submit 'Save', class: 'btn btn-success' %>
+          <%= form.submit "Save", class: "btn btn-success" %>
         </div>
       </div>
     </div>

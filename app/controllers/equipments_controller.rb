@@ -75,6 +75,15 @@ class EquipmentsController < ApplicationController
     redirect_to equipments_path, alert: "Equipment Deleted"
   end
 
+  def importer; end
+
+  def import
+    file = File.open(params[:file])
+    Equipment.import(file)
+
+    redirect_to equipments_path, notice: "Equipment imported"
+  end
+
   private
 
   def equipment
