@@ -33,6 +33,15 @@
   --hero-ruby: #e0115f;
   --hero-sapphire: #ff00fb;
   --hero-star-color: var(--hero-silver);
+
+  /* Equipment Stars Color */
+  --equipment-normal: #c0c0c0;
+  --equipment-advanced: #68c40d;
+  --equipment-rare: #1e72e7;
+  --equipment-epic: #ff00fb;
+  --equipment-legendary: #e0115f;
+  --equipment-mythic: #ffd700;
+  --equipment-star-color: var(--equipment-normal);
 }
 
 html, body {

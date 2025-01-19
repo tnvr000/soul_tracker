@@ -115,9 +115,49 @@
   min-width: 70px;
   text-align: center;
 }
+
+/* Equipment Stars */
+.equipment-container .equipment-stars-container {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+}
+
+.equipment-container .normal {
+  --equipment-star-color: var(--equipment-normal);
+}
+
+.equipment-container .advanced {
+  --equipment-star-color: var(--equipment-advanced);
+}
+
+.equipment-container .rare {
+  --equipment-star-color: var(--equipment-rare);
+}
+
+.equipment-container .epic {
+  --equipment-star-color: var(--equipment-epic);
+}
+
+.equipment-container .legendary {
+  --equipment-star-color: var(--equipment-legendary);
+}
+
+.equipment-container .mythic {
+  --equipment-star-color: var(--equipment-mythic);
+}
+
+.equipment-container .equipment-stars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+  color: var(--equipment-star-color);
+  gap: 3px;
+}
 /* #endregion */
 
-/* @region Show */
+/* #region Show */
 .equipment-stats-container {
   padding: 30px;
   width: 50%;
@@ -146,3 +186,4 @@
 .equipment-stats-container .stat:last-child {
   border-bottom: 0px solid white;
 }
+/* #endregion */

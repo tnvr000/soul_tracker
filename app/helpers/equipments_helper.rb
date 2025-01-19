@@ -1,11 +1,5 @@
 module EquipmentsHelper
-  def equipment_class(equipment)
-    str = equipment.equipment_class
-    return str if equipment.equipment_class_level.to_i.zero?
-
-    str + "*" * equipment.equipment_class_level
-  end
-
+  # form
   def equipment_type_form_options
     Equipment
       .equipment_types
@@ -33,6 +27,7 @@ module EquipmentsHelper
     ]
   end
 
+  # filter
   def equipment_type_filter_options
     Equipment
       .equipment_types
@@ -62,5 +57,13 @@ module EquipmentsHelper
       [ "**", 2, @equipment_class_level == 2 ],
       [ "***", 3, @equipment_class_level == 3 ]
     ]
+  end
+
+  # index
+  def equipment_class(equipment)
+    str = equipment.equipment_class
+    return str if equipment.equipment_class_level.to_i.zero?
+
+    str + "*" * equipment.equipment_class_level
   end
 end

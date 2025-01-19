@@ -3,7 +3,10 @@
     <div class="data name"><%= link_to equipment.name, equipment_path(equipment), data: { turbo_frame: "_top" } %></div>
     <div class="data"><%= equipment.equipment_type %></div>
     <div class="data"><%= equipment.equipment_style %></div>
-    <div class="data"><%= equipment_class(equipment) %></div>
+    <div class="data equipment-stars-container">
+      <span><%= equipment.equipment_class %></span>
+      <%= render partial: "equipment_stars", locals: { equipment: equipment } %>
+    </div>
     <div class="data action">
       <%= link_to duplicate_equipment_path(equipment), data: { turbo_method: :post, turbo_frame: '_top' } do %>
         <i class="bi bi-copy"></i>
