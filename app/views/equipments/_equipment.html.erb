@@ -1,0 +1,16 @@
+<%= turbo_frame_tag equipment do %>
+  <div class="equipment-container">
+    <div class="data name"><%= link_to equipment.name, equipment_path(equipment) %></div>
+    <div class="data"><%= equipment.equipment_type %></div>
+    <div class="data"><%= equipment.equipment_style %></div>
+    <div class="data"><%= equipment_class(equipment) %></div>
+    <div class="data action">
+      <%= link_to duplicate_equipment_path(equipment), data: { turbo_method: :post, turbo_frame: '_top' } do %>
+        <i class="bi bi-copy"></i>
+      <% end %>
+      <%= link_to equipment_path(equipment), data: { turbo_method: :delete, turbo_frame: '_top' } do %>
+        <i class="bi bi-trash"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,118 @@
+/* #region Index */
+/* Equipment Container Header */
+.equipment-container-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+}
+
+.equipment-container-header a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-size: 2em;
+}
+
+/* Equipments Container */
+.equipments-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 10px;
+}
+
+.equipments-container .equipment-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--primary-color);
+  color: var(--secondary-text-color);
+  padding: 5px 10px;
+  border-radius: 10px 10px 0 0;
+}
+
+.equipments-container .equipment-header .data {
+  width: 100%;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.equipments-container turbo-frame:nth-child(odd) .equipment-container {
+  background-color: var(--secondary-bg-color-1);
+}
+
+.equipments-container turbo-frame:nth-child(even) .equipment-container {
+  background-color: var(--secondary-bg-color-2);
+}
+
+.equipments-container turbo-frame:last-child .equipment-container {
+  border-radius: 0 0 10px 10px;
+}
+
+/* Equipment Container */
+.equipments-container .equipment-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px 10px;
+}
+
+/* Equipment Data */
+.equipment-container .data {
+  width: 100%;
+  text-align: center;
+}
+
+.equipment-container .data:first-child {
+  text-align: left;
+}
+
+.equipment-container .data:last-child {
+  text-align: right;
+}
+
+.equipment-container .action a {
+  color: var(--accent-text-color);
+  text-decoration: none;
+  font-weight: bolder;
+}
+
+.equipment-container .name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.equipment-container .name a {
+  color: var(--accent-text-color);
+  text-decoration: none;
+  font-weight: bolder;
+}
+
+.equipment-container .name span {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Equipment Adjustable Attributes */
+.equipment-container .adjust-stat-container {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.equipment-container .adjust-stat-container .adjust-stat {
+  display: none
+}
+
+.equipment-container:hover .adjust-stat-container .adjust-stat {
+  display: block;
+  color:  var(--primary-color);
+  text-decoration: none;
+  font-weight: bolder;
+}
+
+.equipment-container .adjust-stat-container .stat {
+  min-width: 70px;
+  text-align: center;
+}
+/* #endregion */

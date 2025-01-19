@@ -1,7 +1,7 @@
 class HeroesController < ApplicationController
   def index
     update_session_filter_params
-    assign_filter_instance_variable
+    assign_filter_instance_variables
 
     @heroes = Current.user.heroes.order(@order_by.to_sym => :desc)
     @heroes = @heroes.where(hero_class: :epic)
@@ -66,7 +66,7 @@ class HeroesController < ApplicationController
 
   def statistics
     update_statistics_session_filter_params
-    assign_statistics_filter_instance_variable
+    assign_statistics_filter_instance_variables
 
     @heroes = Hero.order(count: :desc)
     @heroes = @heroes.where(hero_type: @hero_type) if @hero_type.nonzero?
@@ -146,7 +146,7 @@ class HeroesController < ApplicationController
     session["hero"]["hero_role"] = Hero.valid_hero_role(params[:hero_role])
   end
 
-  def assign_filter_instance_variable
+  def assign_filter_instance_variables
     @order_by = session["hero"]["order_by"] || :combat_power
     @hero_type = session["hero"]["hero_type"].to_i
     @hero_style = session["hero"]["hero_style"].to_i
@@ -173,7 +173,7 @@ class HeroesController < ApplicationController
     session["hero_statistics"]["hero_class"] = Hero.valid_hero_class(params[:hero_class])
   end
 
-  def assign_statistics_filter_instance_variable
+  def assign_statistics_filter_instance_variables
     @hero_type = session["hero_statistics"]["hero_type"].to_i
     @hero_class = session["hero_statistics"]["hero_class"].to_i
   end

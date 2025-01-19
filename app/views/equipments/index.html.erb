@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-lg-3">
+    <%= form_with(url: equipments_path, method: :get, class: 'row', data: { controller: "search-form", action: "change->search-form#submit", turbo_frame: "search_result", turbo_action: "advance" }) do |form| %>
+      <div class="row">
+        <div class="col-lg-6">
+          <%= render partial: 'shared/filter_options', locals: { name: :equipment_style, options: equipment_style_filter_options, form: form } %>
+        </div>
+        <div class="col-lg-6">
+          <%= render partial: 'shared/filter_options', locals: { name: :equipment_type, options: equipment_type_filter_options, form: form } %>
+        </div>
+        <div class="p-lg-3"></div>
+        <div class="col-lg-6">
+          <%= render partial: 'shared/filter_options', locals: { name: :equipment_class, options: equipment_class_filter_options, form: form } %>
+        </div>
+        <div class="col-lg-6">
+          <%= render partial: 'shared/filter_options', locals: { name: :equipment_class_level, options: equipment_class_level_filter_options, form: form } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-lg-9">
+    <%= turbo_frame_tag "search_result" do %>
+      <div class="equipment-container-header">
+        <h2>Showing <%= @equipments.count %> Equipments</h2>
+        <div>
+          <%= link_to importer_equipments_path, data: { turbo_frame: '_top'} do %>
+            <i class="bi bi-upload"></i>
+          <% end %>
+          <%= link_to equipments_path(format: :csv), data: { turbo_frame: '_top' } do %>
+            <i class="bi bi-download"></i>
+          <% end %>
+          <%= link_to equipments_path, data: { turbo_frame: '_top' } do %>
+              <i class="bi bi-bar-chart-fill"></i>
+            <% end %>
+          <%= link_to new_equipment_path do %>
+            <i class="bi bi-plus-square-fill"></i>
+          <% end %>
+        </div>
+      </div>
+      <div class="equipments-container">
+        <div class="equipment-header">
+          <div class="data">Name</div>
+          <div class="data">Type</div>
+          <div class="data">Style</div>
+          <div class="data">Class</div>
+          <div class="data">Actions</div>
+        </div>
+        <% @equipments.each do |equipment| %>
+          <%= render partial: "equipment", locals: { equipment: equipment } %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

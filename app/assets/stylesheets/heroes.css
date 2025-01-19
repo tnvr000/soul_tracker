@@ -35,26 +35,6 @@
   font-weight: bolder;
 }
 
-/* Hero Container */
-.heroes-container .hero-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 5px 10px;
-}
-
-.heroes-container > .hero-container:nth-child(odd) {
-  --stripe-angle: var(--stripe-odd-angle);
-}
-
-.heroes-container > .hero-container:nth-child(even) {
-  --stripe-angle: var(--stripe-even-angle);
-}
-
-.heroes-container > .hero-container:last-child {
-  border-radius: 0 0 10px 10px;
-}
-
 .heroes-container turbo-frame:nth-child(odd) .hero-container {
   --stripe-angle: var(--stripe-odd-angle);
 }
@@ -65,6 +45,14 @@
 
 .heroes-container turbo-frame:last-child .hero-container {
   border-radius: 0 0 10px 10px;
+}
+
+/* Hero Container */
+.heroes-container .hero-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px 10px;
 }
 
 /* hero stripes */
@@ -124,7 +112,7 @@
   opacity: 0.8;
 }
 
-/* Adjustable Attributes */
+/* Heroes Adjustable Attributes */
 .hero-container .adjust-stat-container {
   display: flex;
   justify-content: center;

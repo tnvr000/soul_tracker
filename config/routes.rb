@@ -24,4 +24,14 @@ Rails.application.routes.draw do
       post :import
     end
   end
+  resources :equipments do
+    member do
+      post :duplicate
+    end
+    collection do
+      get :statistics
+      get :importer
+      post :import
+    end
+  end
 end
