@@ -35,10 +35,10 @@ class EquipmentsController < ApplicationController
     respond_to do |format|
       format.html do
         if equipment.save
-          redirect_to equipments_path, notice: "Equipment Created"
+          redirect_to equipment_path(equipment), notice: "Equipments Created"
         else
           flash.now[:alert] = first_error(equipment)
-          render :new
+          render :new, status: :unprocessable_entity
         end
       end # response for html format
     end
@@ -58,10 +58,10 @@ class EquipmentsController < ApplicationController
     respond_to do |format|
       format.html do
         if equipment.save
-          redirect_to equipments_path, notice: "Equipment Update"
+          redirect_to equipment_path(equipment), notice: "Equipment Updated"
         else
           flash.now[:alert] = first_error(equipment)
-          render :edit
+          render :edit, status: :unprocessable_entity
         end
       end # response for html format
     end
@@ -87,7 +87,7 @@ class EquipmentsController < ApplicationController
     file = File.open(params[:file])
     Equipment.import(file)
 
-    redirect_to equipments_path, notice: "Equipment imported"
+    redirect_to equipments_path, notice: "Equipment Imported"
   end
 
   private

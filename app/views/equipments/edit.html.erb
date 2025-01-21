@@ -1,7 +1,6 @@
 <div class="form-container">
   <h1 class="title">Edit <%= @equipment.name %></h1>
-  <%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
-  <%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+  <%= render partial: "shared/flash_message" %>
 
   <%= render partial: "form", locals: { equipment: @equipment } %>
 </div>

@@ -22,6 +22,7 @@
     <% end %>
   </div>
   <div class="col-lg-9">
+    <%= render partial: "shared/flash_message" %>
     <%= turbo_frame_tag "search_result" do %>
       <div class="hero-header">
         <h2>Showing <%= @heroes.count %> Heroes</h2>

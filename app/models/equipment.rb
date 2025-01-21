@@ -9,9 +9,9 @@ class Equipment < ApplicationRecord
 
   belongs_to :user, optional: true
 
-  validates_uniqueness_of :unique_key
+  validates :unique_key, presence: true, uniqueness: true
 
-  before_create :set_unique_key
+  before_validation :set_unique_key
 
   HEADERS = {
     name: "Name", equipment_type: "Type", equipment_style: "Style", equipment_class: "Class",

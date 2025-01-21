@@ -19,9 +19,9 @@ class Hero < ApplicationRecord
   before_save -> { self.count_offset %= HEROES_REQUIRED_FOR_8_STARS_HERO }
 
   CSV_HEADERS = {
-    name: "Name", hero_class: "Class", hero_type: "Type", level: "Level", stars: "Stars",
-    hero_role: "Role", hero_style: "Style", combat_power: "Combat Power", hit_point: "Hit Point",
-    defense: "Defense", attack: "Attack", speed: "Speed", count: "Count", unique_key: "Key"
+    name: "Name", hero_class: "Class", hero_type: "Type", level: "Level", stars: "Stars", hero_role: "Role",
+    hero_style: "Style", combat_power: "Combat Power", hit_point: "Hit Point", defense: "Defense",
+    attack: "Attack", speed: "Speed", count: "Count", count_offset: "Count Offset", unique_key: "Key"
   }
 
   def set_unique_key
@@ -94,6 +94,7 @@ class Hero < ApplicationRecord
           attack: row[CSV_HEADERS[:attack]],
           speed: row[CSV_HEADERS[:speed]],
           count: row[CSV_HEADERS[:count]],
+          count_offset: row[CSV_HEADERS[:count_offset]]
         )
 
         hero.save

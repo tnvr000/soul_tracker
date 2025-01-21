@@ -31,11 +31,10 @@ class HeroesController < ApplicationController
     respond_to do |format|
       format.html do
         if hero.save
-          redirect_to heroes_path, notice: "Hero Created"
+          redirect_to hero_path(hero), notice: "Hero Created"
         else
-          Rails.logger.debug first_error(hero)
           flash.now[:alert] = first_error(hero)
-          render :new
+          render :new, status: :unprocessable_entity
         end
       end # response for html format
     end
@@ -55,10 +54,10 @@ class HeroesController < ApplicationController
     respond_to do |format|
       format.html do
         if hero.save
-          redirect_to heroes_path, notice: "Hero Updated"
+          redirect_to hero_path(hero), notice: "Hero Updated"
         else
           flash.now[:alert] = first_error(hero)
-          render :edit
+          render :edit, status: :unprocessable_entity
         end
       end # response for html format
     end
@@ -101,7 +100,7 @@ class HeroesController < ApplicationController
     file = File.open(params[:file])
     Hero.import(file)
 
-    redirect_to heroes_path, alert: "Heroes imported"
+    redirect_to heroes_path, alert: "Heroes Imported"
   end
 
   private
