@@ -1,12 +1,17 @@
 class EquipmentsController < ApplicationController
+  allow_unauthenticated_access
+  before_action :resume_session
+
   def index
     update_session_filter_params
     assign_filter_instance_variables
 
-    @equipments = Current.user.equipments.order(equipment_class: :desc)
+    @equipments = Equipment.where(user_id: Current.user&.id)
+    @equipments = @equipments.order(equipment_class: :desc)
       .order(equipment_class_level: :desc)
       .order(:equipment_style)
       .order(:equipment_type)
+      .order(level: :desc)
     @equipments = @equipments.where(equipment_type: @equipment_type) if @equipment_type.nonzero?
     @equipments = @equipments.where(equipment_style: @equipment_style) if @equipment_style.nonzero?
     @equipments = @equipments.where(equipment_class: @equipment_class) if @equipment_class.nonzero?
@@ -24,7 +29,8 @@ class EquipmentsController < ApplicationController
   end
 
   def create
-    @equipment = Current.user.equipments.build(equipment_params)
+    @equipment = Equipment.new(user_id: Current.user&.id)
+    @equipment.assign_attributes(equipment_params)
 
     respond_to do |format|
       format.html do
@@ -91,7 +97,7 @@ class EquipmentsController < ApplicationController
   end
 
   def set_equipment
-    Current.user.equipments.find(params[:id])
+    Equipment.find_by(id: params[:id], user_id: Current.user&.id)
   end
 
   def equipment_params

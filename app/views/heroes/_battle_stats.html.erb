@@ -2,7 +2,7 @@
   <div class="hero-container stripes <%= hero.hero_type %>">
     <div class="data name">
       <%= link_to hero.name, hero_path(hero), data: { turbo_frame: "_top" } %>
-      <span>Lv. <%= hero.level %></span>
+      <span>Lv. <%= "%03d" % hero.level.to_i %></span>
     </div>
     <div class="data adjust-stat-container">
       <%= link_to adjust_stat_hero_path(hero, direction: :decrement, attribute: :stars),

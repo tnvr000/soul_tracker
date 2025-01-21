@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_19_112745) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_21_095257) do
   create_table "equipments", force: :cascade do |t|
     t.integer "user_id"
     t.string "name"
@@ -33,8 +33,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_19_112745) do
     t.integer "hero_type"
     t.integer "hero_role"
     t.integer "hero_style"
-    t.integer "level"
-    t.integer "stars"
+    t.integer "level", default: 0
+    t.integer "stars", default: 4
     t.integer "combat_power"
     t.integer "hit_point"
     t.integer "defense"

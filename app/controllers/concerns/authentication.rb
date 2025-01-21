@@ -12,6 +12,10 @@ module Authentication
     end
   end
 
+  def resume_session
+    Current.session ||= find_session_by_cookie
+  end
+
   private
     def authenticated?
       resume_session
@@ -19,10 +23,6 @@ module Authentication
 
     def require_authentication
       resume_session || request_authentication
-    end
-
-    def resume_session
-      Current.session ||= find_session_by_cookie
     end
 
     def find_session_by_cookie

@@ -1,9 +1,13 @@
 class HeroesController < ApplicationController
+  allow_unauthenticated_access
+  before_action :resume_session
+
   def index
     update_session_filter_params
     assign_filter_instance_variables
 
-    @heroes = Current.user.heroes.order(@order_by.to_sym => :desc)
+    @heroes = Hero.where(user_id: Current.user&.id)
+    @heroes = @heroes.order(@order_by.to_sym => :desc)
     @heroes = @heroes.where(hero_class: :epic)
     @heroes = @heroes.where(hero_type: @hero_type) if @hero_type.nonzero?
     @heroes = @heroes.where(hero_style: @hero_style) if @hero_style.nonzero?
@@ -21,13 +25,15 @@ class HeroesController < ApplicationController
   end
 
   def create
-    @hero = Current.user.heroes.build(hero_params)
+    @hero = Hero.new(user_id: Current.user&.id)
+    hero.assign_attributes(hero_params)
 
     respond_to do |format|
       format.html do
         if hero.save
           redirect_to heroes_path, notice: "Hero Created"
         else
+          Rails.logger.debug first_error(hero)
           flash.now[:alert] = first_error(hero)
           render :new
         end
@@ -68,7 +74,7 @@ class HeroesController < ApplicationController
     update_statistics_session_filter_params
     assign_statistics_filter_instance_variables
 
-    @heroes = Hero.order(count: :desc)
+    @heroes = Hero.where(user_id: Current.user&.id).order(count: :desc)
     @heroes = @heroes.where(hero_type: @hero_type) if @hero_type.nonzero?
     @heroes = @heroes.where(hero_class: @hero_class) if @hero_class.nonzero?
 
@@ -105,7 +111,7 @@ class HeroesController < ApplicationController
   end
 
   def set_hero
-    Current.user.heroes.find(params[:id])
+    Hero.find_by(id: params[:id], user_id: Current.user&.id)
   end
 
   def hero_params
