@@ -2,12 +2,14 @@
 service: soul_tracker
 
 # Name of the container image.
-image: your-user/soul_tracker
+image: tnvr000/soul_tracker
 
 # Deploy to these servers.
 servers:
+  app:
+    - soul_tracker
   web:
-    - 192.168.0.1
+    - soul_tracker
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -19,13 +21,13 @@ servers:
 # Note: If using Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption.
 proxy:
   ssl: true
-  host: app.example.com
+  host: souls.mine.bz
 
 # Credentials for your image host.
 registry:
   # Specify the registry server, if you're not using Docker Hub
   # server: registry.digitalocean.com / ghcr.io / ...
-  username: your-user
+  username: tnvr000
 
   # Always use an access token rather than real password when possible.
   password:
@@ -36,9 +38,11 @@ env:
   secret:
     - RAILS_MASTER_KEY
   clear:
+    RAILS_ENV: production
+    WEB_CONCURRENCY: 2
     # Run the Solid Queue Supervisor inside the web server's Puma process to do jobs.
     # When you start using multiple servers, you should split out job processing to a dedicated machine.
-    SOLID_QUEUE_IN_PUMA: true
+    # SOLID_QUEUE_IN_PUMA: true
 
     # Set number of processes dedicated to Solid Queue (default: 1)
     # JOB_CONCURRENCY: 3
@@ -66,6 +70,9 @@ aliases:
 # Recommended to change this to a mounted volume path that is backed up off server.
 volumes:
   - "soul_tracker_storage:/rails/storage"
+  - "/etc/letsencrypt/live/souls.mine.bz:/etc/letsencrypt/live/souls.mine.bz:ro"
+  - "/etc/letsencrypt/archive/souls.mine.bz:/etc/letsencrypt/archive/souls.mine.bz:ro"
+  - "/etc/letsencrypt/keys:/etc/letsencrypt/keys:ro"
 
 
 # Bridge fingerprinted assets, like JS and CSS, between versions to avoid
@@ -88,8 +95,8 @@ builder:
   #   - RAILS_MASTER_KEY
 
 # Use a different ssh user than root
-# ssh:
-#   user: app
+ssh:
+  user: tanveer
 
 # Use accessory services (secrets come from .kamal/secrets).
 # accessories:
