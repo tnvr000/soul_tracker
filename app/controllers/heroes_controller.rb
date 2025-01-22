@@ -100,7 +100,7 @@ class HeroesController < ApplicationController
     file = File.open(params[:file])
     Hero.import(file)
 
-    redirect_to heroes_path, alert: "Heroes Imported"
+    redirect_to heroes_path, notice: "Heroes Imported"
   end
 
   private
