@@ -6,8 +6,6 @@ image: tnvr000/soul_tracker
 
 # Deploy to these servers.
 servers:
-  app:
-    - soul_tracker
   web:
     - soul_tracker
   # job:
