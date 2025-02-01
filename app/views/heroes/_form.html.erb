@@ -13,16 +13,17 @@
   <%= form.number_field :stars %>
   <%= form.number_field :count %>
   <%= form.number_field :count_offset %>
+  <%= form.hidden_field :navigate_to, value: request.referer %>
 
   <div class="row">
     <div class="col-lg-6">
       <div class="d-grid">
-        <%= link_to 'Back', heroes_path, class: 'btn btn-warning' %>
+        <%= form.submit 'Save', class: 'btn btn-success' %>
       </div>
     </div>
     <div class="col-lg-6">
       <div class="d-grid">
-        <%= form.submit 'Save', class: 'btn btn-success' %>
+        <%= link_to 'Back', request.referer, class: 'btn btn-warning' %>
       </div>
     </div>
   </div>

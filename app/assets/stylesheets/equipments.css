@@ -160,8 +160,9 @@
 /* #region Show */
 .equipment-stats-container {
   padding: 30px;
-  width: 50%;
-  max-width: 500px;
+  width: 100%;
+  min-width: 328px;
+  max-width: 512px;
   margin: 0 auto;
   background-color: var(--secondary-bg-color-1);
   border: 2px solid var(--secondary-bg-color-2);
