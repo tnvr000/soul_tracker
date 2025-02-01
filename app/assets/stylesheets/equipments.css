@@ -58,22 +58,7 @@
 
 /* Equipment Data */
 .equipment-container .data {
-  width: 100%;
   text-align: center;
-}
-
-.equipment-container .data:first-child {
-  text-align: left;
-}
-
-.equipment-container .data:last-child {
-  text-align: right;
-}
-
-.equipment-container .action a {
-  color: var(--accent-text-color);
-  text-decoration: none;
-  font-weight: bolder;
 }
 
 .equipment-container .name {
@@ -88,7 +73,7 @@
   font-weight: bolder;
 }
 
-.equipment-container .name span {
+.equipment-container .level {
   font-size: 14px;
   opacity: 0.8;
 }
@@ -154,6 +139,39 @@
   font-size: 11px;
   color: var(--equipment-star-color);
   gap: 3px;
+}
+
+/* Sliders */
+.sliders-2 {
+  display: flex;
+  overflow: hidden;
+  width: 50px;
+}
+
+.sliders-2 .slider-2:first-child {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  transition: 150ms;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.sliders-2 .slider-2:last-child {
+  display: flex;
+  width: 0%;
+  overflow: hidden;
+  transition: 150ms;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.sliders-2:hover .slider-2:first-child {
+  width: 0;
+}
+
+.sliders-2:hover .slider-2:last-child {
+  width: 100%;
 }
 /* #endregion */
 

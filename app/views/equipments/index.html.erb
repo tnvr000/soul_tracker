@@ -40,11 +40,10 @@
       </div>
       <div class="equipments-container">
         <div class="equipment-header">
-          <div class="data">Name</div>
-          <div class="data">Type</div>
-          <div class="data">Style</div>
-          <div class="data">Class</div>
-          <div class="data">Actions</div>
+          <div class="data" style="width: 34%">Name</div>
+          <div class="data" style="width: 22%">Type</div>
+          <div class="data" style="width: 22%">Style</div>
+          <div class="data" style="width: 22%">Class</div>
         </div>
         <% @equipments.each do |equipment| %>
           <%= render partial: "equipment", locals: { equipment: equipment } %>
