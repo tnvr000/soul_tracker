@@ -21,14 +21,10 @@ class HeroesController < ApplicationController
   end
 
   def new
-    Rails.logger.info "=" * 50
-    Rails.logger.info request.referer
     @hero = Hero.new
   end
 
   def create
-    Rails.logger.info "=" * 50
-    Rails.logger.info params[:hero][:navigate_to]
     @hero = Hero.new(user_id: Current.user&.id)
     hero.assign_attributes(hero_params)
 
@@ -45,20 +41,14 @@ class HeroesController < ApplicationController
   end
 
   def show
-    Rails.logger.info "=" * 50
-    Rails.logger.info request.referer
     @hero = set_hero
   end
 
   def edit
-    Rails.logger.info "=" * 50
-    Rails.logger.info request.referer
     @hero = set_hero
   end
 
   def update
-    Rails.logger.info "=" * 50
-    Rails.logger.info params[:hero][:navigate_to]
     hero.assign_attributes(hero_params)
 
     respond_to do |format|
