@@ -21,17 +21,21 @@ class HeroesController < ApplicationController
   end
 
   def new
+    Rails.logger.info "=" * 50
+    Rails.logger.info request.referer
     @hero = Hero.new
   end
 
   def create
+    Rails.logger.info "=" * 50
+    Rails.logger.info params[:hero][:navigate_to]
     @hero = Hero.new(user_id: Current.user&.id)
     hero.assign_attributes(hero_params)
 
     respond_to do |format|
       format.html do
         if hero.save
-          redirect_to hero_path(hero), notice: "Hero Created"
+          redirect_to params[:hero][:navigate_to], notice: "Hero Created"
         else
           flash.now[:alert] = first_error(hero)
           render :new, status: :unprocessable_entity
@@ -41,20 +45,26 @@ class HeroesController < ApplicationController
   end
 
   def show
+    Rails.logger.info "=" * 50
+    Rails.logger.info request.referer
     @hero = set_hero
   end
 
   def edit
+    Rails.logger.info "=" * 50
+    Rails.logger.info request.referer
     @hero = set_hero
   end
 
   def update
+    Rails.logger.info "=" * 50
+    Rails.logger.info params[:hero][:navigate_to]
     hero.assign_attributes(hero_params)
 
     respond_to do |format|
       format.html do
         if hero.save
-          redirect_to hero_path(hero), notice: "Hero Updated"
+          redirect_to params[:hero][:navigate_to], notice: "Hero Updated"
         else
           flash.now[:alert] = first_error(hero)
           render :edit, status: :unprocessable_entity
