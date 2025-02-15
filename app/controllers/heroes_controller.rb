@@ -97,8 +97,10 @@ class HeroesController < ApplicationController
   def importer; end
 
   def import
-    file = File.open(params[:file])
-    Hero.import(file)
+    import = Import.create(params.permit(:file))
+    Hero.import(import.file)
+    import.file.purge
+    import.delete
 
     redirect_to heroes_path, notice: "Heroes Imported"
   end

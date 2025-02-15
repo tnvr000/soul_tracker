@@ -84,8 +84,10 @@ class EquipmentsController < ApplicationController
   def importer; end
 
   def import
-    file = File.open(params[:file])
-    Equipment.import(file)
+    import = Import.create(params.permit(:file))
+    Equipment.import(import.file)
+    import.file.purge
+    import.delete
 
     redirect_to equipments_path, notice: "Equipment Imported"
   end
