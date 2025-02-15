@@ -60,7 +60,7 @@ class Equipment < ApplicationRecord
     end
 
     def import(file)
-      CSV.foreach(file, headers: true) do |row|
+      CSV.parse(file.download, headers: true) do |row|
         equipment = Equipment.find_by(unique_key: row[HEADERS[:unique_key]], user_id: Current.user&.id)
         equipment = Equipment.new(user_id: Current.user&.id) if equipment.blank?
 
