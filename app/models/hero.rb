@@ -38,7 +38,7 @@ class Hero < ApplicationRecord
         .offset(1).limit(1)
         .first&.level.to_i
 
-      self.where(level: limit_level).order(combat_power: :desc).first
+      self.where(level: limit_level, user_id: Current.user&.id).order(combat_power: :desc).first
     end
 
     def valid_hero_class(hero_class)
