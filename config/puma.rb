@@ -40,7 +40,9 @@ plugin :solid_queue if ENV["SOLID_QUEUE_IN_PUMA"]
 # In other environments, only set the PID file if requested.
 pidfile ENV["PIDFILE"] if ENV["PIDFILE"]
 
-ssl_bind "0.0.0.0", "3000", {
-  key: "/etc/letsencrypt/live/souls.mine.bz/privkey.pem",
-  cert: "/etc/letsencrypt/live/souls.mine.bz/fullchain.pem"
-}
+if Rails.env.production?
+  ssl_bind "0.0.0.0", "3000", {
+    key: "/etc/letsencrypt/live/souls.mine.bz/privkey.pem",
+    cert: "/etc/letsencrypt/live/souls.mine.bz/fullchain.pem"
+  }
+end
