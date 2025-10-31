@@ -87,9 +87,9 @@ GEM
     bindex (0.8.1)
     bootsnap (1.18.6)
       msgpack (~> 1.2)
-    bootstrap_form (5.4.0)
-      actionpack (>= 6.1)
-      activemodel (>= 6.1)
+    bootstrap_form (5.5.0)
+      actionpack (>= 7.2)
+      activemodel (>= 7.2)
     brakeman (7.1.0)
       racc
     builder (3.3.0)
@@ -353,7 +353,7 @@ GEM
     unicode-display_width (3.1.4)
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
-    uri (1.0.4)
+    uri (1.1.0)
     useragent (0.16.11)
     web-console (4.2.1)
       actionview (>= 6.0.0)
@@ -384,7 +384,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap
-  bootstrap_form (~> 5.4.0)
+  bootstrap_form (~> 5.5.0)
   brakeman
   capybara
   cssbundling-rails
