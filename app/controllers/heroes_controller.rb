@@ -85,9 +85,9 @@ class HeroesController < ApplicationController
   end
 
   def adjust_stat
-    adjust_stat_of(adjustable_attribute)
+    adjust_stat_of(to_be_adjusted_attribute)
     hero.reload
-    @adjusted_partial = set_adjusted_partial
+    @adjusted_partial = adjusted_partial
 
     respond_to do |format|
       format.turbo_stream
@@ -186,7 +186,7 @@ class HeroesController < ApplicationController
   end
 
   # adjust stats
-  def adjustable_attribute
+  def to_be_adjusted_attribute
     return nil unless [ "stars", "count" ].include?(params[:attribute])
 
     params[:attribute].downcase
@@ -203,12 +203,9 @@ class HeroesController < ApplicationController
     end
   end
 
-  def set_adjusted_partial
-    case adjustable_attribute
-    when "stars"
-      "battle_stats"
-    when "count"
-      "frequency_stats"
-    end
+  def adjusted_partial
+    return "battle_stats" unless %w[battle_stats frequency_stats].include?(params[:partial])
+
+    params[:partial]
   end
 end
