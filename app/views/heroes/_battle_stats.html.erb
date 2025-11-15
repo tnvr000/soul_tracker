@@ -4,21 +4,7 @@
       <%= link_to hero.name, hero_path(hero), data: { turbo_frame: "_top" } %>
       <span>Lv. <%= "%03d" % hero.level.to_i %></span>
     </div>
-    <div class="data adjust-stat-container">
-      <%= link_to adjust_stat_hero_path(hero, direction: :decrement, attribute: :stars),
-        class: 'adjust-stat',
-        data: { turbo_method: :patch, turbo_stream: true} do
-      %>
-        <i class="bi bi-chevron-down"></i>
-      <% end %>
-      <%= render partial: 'hero_stars', locals: { hero: hero } %>
-      <%= link_to adjust_stat_hero_path(hero, direction: :increment, attribute: :stars),
-        class: 'adjust-stat',
-        data: { turbo_method: :patch, turbo_stream: true} do
-      %>
-        <i class="bi bi-chevron-up"></i>
-      <% end %>
-    </div>
+    <%= render partial: 'hero_stars_with_adjusters', locals: { hero: hero, partial: :battle_stats } %>
     <div class="data"><%= hero.hero_type.titlecase %></div>
     <div class="data"><%= hero.combat_power %></div>
     <div class="data"><%= hero.attack %></div>

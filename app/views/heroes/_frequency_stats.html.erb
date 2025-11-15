@@ -1,6 +1,7 @@
 <%= turbo_frame_tag hero do %>
   <div class="hero-container stripes <%= hero.hero_type %>">
     <div class="data name"><%= link_to hero.name, hero_path(hero), data: { turbo_frame: '_top' } %></div>
+    <%= render partial: 'hero_stars_with_adjusters', locals: { hero: hero, partial: :frequency_stats } %>
     <div class="data"><%= hero.hero_type.titlecase %></div>
     <div class="data"><%= heroes_remaining_to_reach_8_stars(hero) %></div>
     <div class="data adjust-stat-container">
