@@ -85,7 +85,7 @@ GEM
     bindex (0.8.1)
     bootsnap (1.21.1)
       msgpack (~> 1.2)
-    bootstrap_form (5.5.0)
+    bootstrap_form (5.6.0)
       actionpack (>= 7.2)
       activemodel (>= 7.2)
     brakeman (7.1.2)
@@ -384,7 +384,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.21)
   bootsnap
-  bootstrap_form (~> 5.5.0)
+  bootstrap_form (~> 5.6.0)
   brakeman
   capybara
   cssbundling-rails
