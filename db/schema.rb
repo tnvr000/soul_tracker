@@ -10,26 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_15_161222) do
+ActiveRecord::Schema[8.1].define(version: 2025_02_15_161222) do
   create_table "active_storage_attachments", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "record_type", null: false
-    t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.bigint "record_id", null: false
+    t.string "record_type", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
   create_table "active_storage_blobs", force: :cascade do |t|
-    t.string "key", null: false
-    t.string "filename", null: false
-    t.string "content_type"
-    t.text "metadata"
-    t.string "service_name", null: false
     t.bigint "byte_size", null: false
     t.string "checksum"
+    t.string "content_type"
     t.datetime "created_at", null: false
+    t.string "filename", null: false
+    t.string "key", null: false
+    t.text "metadata"
+    t.string "service_name", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -40,39 +40,39 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_15_161222) do
   end
 
   create_table "equipments", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "name"
-    t.integer "equipment_type"
-    t.integer "equipment_style"
+    t.datetime "created_at", null: false
     t.integer "equipment_class"
     t.integer "equipment_class_level"
+    t.integer "equipment_style"
+    t.integer "equipment_type"
     t.integer "level", default: 0
+    t.string "name"
     t.string "unique_key", null: false
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["unique_key"], name: "index_equipments_on_unique_key"
     t.index ["user_id"], name: "index_equipments_on_user_id"
   end
 
   create_table "heroes", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "name"
+    t.integer "attack"
+    t.integer "combat_power"
+    t.integer "count", default: 1
+    t.integer "count_offset", default: 0
+    t.datetime "created_at", null: false
+    t.integer "defense"
     t.integer "hero_class"
-    t.integer "hero_type"
     t.integer "hero_role"
     t.integer "hero_style"
-    t.integer "level", default: 0
-    t.integer "stars", default: 4
-    t.integer "combat_power"
+    t.integer "hero_type"
     t.integer "hit_point"
-    t.integer "defense"
-    t.integer "attack"
+    t.integer "level", default: 0
+    t.string "name"
     t.integer "speed"
-    t.integer "count", default: 1
+    t.integer "stars", default: 4
     t.string "unique_key", null: false
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "count_offset", default: 0
+    t.integer "user_id"
     t.index ["unique_key"], name: "index_heroes_on_unique_key", unique: true
     t.index ["user_id"], name: "index_heroes_on_user_id"
   end
@@ -83,18 +83,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_15_161222) do
   end
 
   create_table "sessions", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "ip_address"
-    t.string "user_agent"
     t.datetime "created_at", null: false
+    t.string "ip_address"
     t.datetime "updated_at", null: false
+    t.string "user_agent"
+    t.integer "user_id", null: false
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
+    t.datetime "created_at", null: false
     t.string "email_address", null: false
     t.string "password_digest", null: false
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end

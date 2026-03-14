@@ -33,8 +33,8 @@ class Hero < ApplicationRecord
   class << self
     def next_hero_to_breakthrough
       limit_level = self.select(:level)
-        .where(user_id: Current.user&.id)
-        .order(level: :desc).distinct
+        .where(user_id: Current.user&.id, hero_class: :epic)
+        .order(level: :desc)
         .offset(1).limit(1)
         .first&.level.to_i
 
