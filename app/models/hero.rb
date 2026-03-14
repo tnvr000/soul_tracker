@@ -35,8 +35,8 @@ class Hero < ApplicationRecord
       limit_level = self.select(:level)
         .where(user_id: Current.user&.id, hero_class: :epic)
         .order(level: :desc)
-        .offset(1).limit(1)
-        .first&.level.to_i
+        .distinct.limit(2)
+        .last&.level.to_i
 
       self.where(level: limit_level, user_id: Current.user&.id).order(combat_power: :desc).first
     end
