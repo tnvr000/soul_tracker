@@ -42,7 +42,7 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-gem "bootstrap_form", "~> 5.6.0"
+gem "bootstrap_form", "~> 5.6.1"
 gem "csv", "~> 3.3"
 
 group :development, :test do
