@@ -7,7 +7,7 @@ image: tnvr000/soul_tracker
 # Deploy to these servers.
 servers:
   web:
-    - soul_tracker
+    - souls
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -19,7 +19,7 @@ servers:
 # Note: If using Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption.
 proxy:
   ssl: true
-  host: soultracker.mine.bz
+  host: souls.mine.bz
 
 # Credentials for your image host.
 registry:
